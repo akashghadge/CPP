@@ -5,7 +5,7 @@ int sum;
 int i = 1;
 int main()
 {
-    if (i >5)
+    if (i > 5)
     {
         cout << "THE ADDITION IS THE " << sum << endl;
         return 0;

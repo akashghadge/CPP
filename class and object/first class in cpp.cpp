@@ -40,5 +40,4 @@ main()
 
     // person.display();
     // cout << "THE SIZE OF THE CLASS IS THE : " << sizeof(emptyclass) << endl;
-
 }

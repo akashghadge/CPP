@@ -7,14 +7,21 @@ public:
     int *arr;
     int size;
     int end_element = 0;
+    int flag_size = 1;
     ARRAY() {}
     ARRAY(int size_temp)
     {
         size = size_temp;
+        flag_size = 0;
     }
 
     void create_array()
     {
+        if (flag_size)
+        {
+            cout << "PLEASE ENTER THE SIZE OF THE ARRAY:" << endl;
+            cin >> size;
+        }
         arr = new int[size];
         static int i_create;
         int terminate = 1;
@@ -618,3 +625,104 @@ class DEQUE
         }
     }
 };
+void bublesort(int *base, int size)
+{
+    int i;
+    int temp;
+    for (i = 0; i < size; i++)
+    {
+        int j = 0;
+        for (j = 0; j < size; j++)
+        {
+            if (base[i] < base[j])
+            {
+                temp = base[i];
+                base[i] = base[j];
+                base[j] = temp;
+            }
+        }
+    }
+}
+void insertion_sort(int *base, int size)
+{
+    int i = 1;
+    int j;
+    for (i = 1; i < size; i++)
+    {
+        int temp = base[i];
+        j = i - 1;
+        while (j >= 0 && base[j] > temp)
+        {
+            base[j + 1] = base[j];
+            j--;
+        }
+        base[j + 1] = temp;
+    }
+}
+void swap(int *a, int *b)
+{
+    int temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+}
+void selection_sort(int *base, int size)
+{
+    int j;
+    int i = 0;
+    int min;
+    for (i = 0; i < size - 1; i++)
+    {
+        min = i;
+
+        for (j = i + 1; j < size; j++)
+        {
+            if (base[j] < base[min])
+            {
+                min = j;
+            }
+        }
+        if (min != i)
+        {
+            swap(&base[min], &base[i]);
+        }
+    }
+}
+bool linear_serch(int *base, int size, int target)
+{
+    int i;
+    bool result;
+    for (i = 0; i < size; i++)
+    {
+        if (base[i] == target)
+        {
+            cout << "THE ARRAY HAVE THE " << target << " AT THE " << i << " POSITION " << endl;
+            result = true;
+            return result;
+        }
+    }
+}
+void swap_string(string *a, string *b)
+{
+    string temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+}
+void string_sorting(struct EXAM *e, int size) // changes shold made befor usinng the alogrithm
+{
+
+    int i;
+    for (i = 0; i < size; i++)
+    {
+        int j;
+        for (j = 0; j < size; j++)
+        {
+            if (e[i].name < e[j].name)
+            {
+                swap_string(&e[i].name, &e[j].name);
+                swap(&e[i].marks, &e[j].marks);
+            }
+        }
+    }
+}

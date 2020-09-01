@@ -133,7 +133,6 @@ public:
         return arr[end_element - 1];
     }
 };
-
 class LL_SINGLE
 {
 public:
@@ -379,7 +378,7 @@ public:
             len();
             if (pos_delete > leng)
             {
-                ` cout << "POSITION IS INVAILID!!!!!" << endl;
+                cout << "POSITION IS INVAILID!!!!!" << endl;
             }
             else
             {
@@ -399,6 +398,223 @@ public:
 
         default:
             break;
+        }
+    }
+};
+class QUEUE : public ARRAY
+{
+public:
+    int front = -1;
+    int rear = -1;
+    QUEUE() {}
+    void creat_queue(int size_stack)
+    {
+        size = size_stack;
+        create_array();
+    }
+    void display_queue()
+    {
+        display_array();
+    }
+    void enque(int num)
+    {
+        append_array(num);
+    }
+    void deque()
+    {
+        delete_element(0);
+    }
+    void front_ele()
+    {
+        display_array_one(0);
+    }
+};
+class QUEUE_CIRCULAR
+{
+public:
+    int LENGTH;
+    QUEUE_CIRCULAR() {}
+    QUEUE_CIRCULAR(int size)
+    {
+        LENGTH = size;
+    }
+    int front = -1;
+    int rear = -1;
+    int *queue;
+    void enque(int num)
+    {
+        int *queue = new int[LENGTH];
+        if (front == -1 && rear == -1)
+        {
+            front = 0;
+            rear = 0;
+            queue[rear] = num;
+        }
+        else if (front == (rear + 1) % LENGTH)
+        {
+            printf("QUEUE IS FULL FIRSTLY DEQUE SOME ELEMENTS :)\n");
+        }
+        else
+        {
+            rear = (rear + 1) % LENGTH;
+            queue[rear] = num;
+        }
+    }
+    void deque()
+    {
+        if (front == -1 && rear == -1)
+        {
+            printf("THE QUEUE IS THE EMPTY SO WE COULD NOT DEQUE ANY ELEMENT :P\n");
+        }
+        else if (front == rear)
+        {
+            printf("DEQUE ELEMENT IS THE :%d\n", queue[front]);
+            front = -1;
+            rear = -1;
+        }
+        else
+        {
+            front = (front + 1) % LENGTH;
+        }
+    }
+    int front_element()
+    {
+        printf("AT THE FRONT THERE %d ELEMENT.\n", queue[front]);
+        return queue[front];
+    }
+    void display()
+    {
+        int i;
+        int j = 1;
+        i = front;
+        while (i != rear)
+        {
+            printf("THE ELEMENT OF THE QUEUE %d POSITION IS THE %d. \n", j, queue[i]);
+            i = (i + 1) % LENGTH;
+            j++;
+        }
+        printf("THE ELEMENT OF THE QUEUE %d POSITION IS THE %d. \n", j, queue[i]);
+    }
+};
+class DEQUE
+{
+    struct node
+    {
+        int data;
+        struct node *next;
+    };
+    typedef struct node *LINK;
+    LINK head_node = NULL;
+    LINK temp_node = NULL;
+    LINK tail_node = NULL;
+    void creat()
+    {
+        int terminate;
+        LINK newnode;
+        while (terminate)
+        {
+            newnode = (LINK)malloc(sizeof(struct node));
+            cout << "PLEASE ENTER THE DATA: " << endl;
+            cin >> newnode->data;
+            newnode->next = NULL;
+            if (head_node == NULL)
+            {
+                head_node = newnode;
+                temp_node = head_node;
+                tail_node = head_node;
+            }
+            else
+            {
+                temp_node->next = newnode;
+                temp_node = newnode;
+                tail_node = newnode;
+            }
+
+            cout << "WOULD YOU LIKE TO CONTINUE ENTER 1 FOR YES AND 0 FOR NO " << endl;
+            cin >> terminate;
+        }
+    }
+    void display()
+    {
+        LINK temp_display;
+        temp_display = head_node;
+        int i;
+        i = 0;
+        while (temp_display != NULL)
+        {
+            cout << "THE DATA AT THE " << i << " INDEX IS THE " << temp_display->data << endl;
+            i++;
+            temp_display = temp_display->next;
+        }
+    }
+    void enque_front(int num)
+    {
+        if (head_node == NULL)
+        {
+            creat();
+        }
+        else
+        {
+            LINK newnode;
+            newnode = (LINK)malloc(sizeof(struct node));
+            temp_node = head_node;
+            newnode->data = num;
+            newnode->next = head_node;
+            head_node = newnode;
+        }
+    }
+    void enque_rear(int num)
+    {
+        if (head_node == NULL)
+        {
+            creat();
+        }
+        else
+        {
+            LINK newnode;
+            newnode = (LINK)malloc(sizeof(struct node));
+            temp_node = head_node;
+            newnode->data = num;
+            newnode->next = NULL;
+            tail_node->next = newnode;
+        }
+    }
+    void dequeue_front()
+    {
+        if (head_node == NULL)
+        {
+            cout << "PLEASE CREATE THE LIST FIRST" << endl;
+        }
+        else
+        {
+            temp_node = head_node;
+            head_node = head_node->next;
+            free(temp_node);
+        }
+    }
+    void dequeue_rear()
+    {
+        if (head_node == NULL)
+        {
+            cout << "PLEASE CREATE THE LIST FIRST" << endl;
+        }
+        else
+        {
+            int i = 0;
+            temp_node = head_node;
+            LINK temp_node_prv;
+            temp_node_prv = temp_node;
+            while (temp_node->next != NULL)
+            {
+                if (i > 0)
+                {
+                    temp_node_prv = temp_node_prv->next;
+                }
+                temp_node = temp_node->next;
+                i++;
+            }
+            temp_node_prv->next = NULL;
+            free(temp_node);
         }
     }
 };

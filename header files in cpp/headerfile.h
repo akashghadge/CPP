@@ -709,7 +709,13 @@ void swap_string(string *a, string *b)
     *a = *b;
     *b = temp;
 }
+struct EXAM
+{
+    string name;
+    int marks;
+};
 void string_sorting(struct EXAM *e, int size) // changes shold made befor usinng the alogrithm
+
 {
 
     int i;
@@ -718,7 +724,7 @@ void string_sorting(struct EXAM *e, int size) // changes shold made befor usinng
         int j;
         for (j = 0; j < size; j++)
         {
-            if (e[i].name < e[j].name)
+            if (&e[i].name < &e[j].name)
             {
                 swap_string(&e[i].name, &e[j].name);
                 swap(&e[i].marks, &e[j].marks);
@@ -726,3 +732,162 @@ void string_sorting(struct EXAM *e, int size) // changes shold made befor usinng
         }
     }
 }
+class ARRAY_CHAR
+{
+
+public:
+    char *arr;
+    int size;
+    int end_element = 0;
+    int flag_size = 1;
+    int flag_creat = 1;
+    ARRAY_CHAR() {}
+    ARRAY_CHAR(int size_temp)
+    {
+        size = size_temp;
+        flag_size = 0;
+    }
+
+    void create_array()
+    {
+        if (flag_size)
+        {
+            cout << "PLEASE ENTER THE SIZE OF THE ARRAY:" << endl;
+            cin >> size;
+        }
+        arr = new char[size];
+        if (flag_creat)
+        {
+            static int i_create;
+            int terminate = 1;
+            for (i_create; i_create < size && terminate; i_create++)
+            {
+                cout << "PLEASE ENTER THE NO FOR THE " << i_create << " POSITION:" << endl;
+                cin >> *(arr + i_create);
+                end_element++;
+                cout << "WOULD YOU LIKE TO CONTINUE ENTER 1 FOR YES AND 0 FOR NO " << endl;
+                cin >> terminate;
+            }
+        }
+    }
+    void display_array()
+    {
+        int i;
+        char *arr_temp = arr;
+        for (i = 0; i < end_element; i++)
+        {
+            cout << "ARRAY HAVE THE " << *(arr_temp + i)
+                 << " ON THE " << i
+                 << "POSITION" << endl;
+        }
+    }
+    void display_array_full()
+    {
+        int i;
+        char *arr_temp = arr;
+        for (i = 0; i < size; i++)
+        {
+            cout << "ARRAY HAVE THE " << *(arr_temp + i)
+                 << " ON THE " << i
+                 << "POSITION" << endl;
+        }
+    }
+    void reverse_array()
+    {
+        int mid = (end_element - 1) / 2;
+        int i = 0;
+        int end = end_element;
+        for (i = 0; i <= mid; i++)
+        {
+            end--;
+            swap(&arr[i], &arr[end]);
+        }
+    }
+    void swap(char *a, char *b)
+    {
+        int temp;
+        temp = *a;
+        *a = *b;
+        *b = temp;
+    }
+    void delete_element(int index)
+    {
+        if (index >= end_element)
+        {
+            cout << "PLEASE ENTER THE CORRECT INDEX.:)" << endl;
+        }
+        else if (index == size - 1)
+        {
+            cout << arr[index];
+            delete (&arr[index]);
+            end_element--;
+        }
+        else
+        {
+            int i;
+            int index_next;
+            index_next = index + 1;
+            for (i = index; i < size; i++)
+            {
+                swap(&arr[i], &arr[index_next]);
+                index_next++;
+            }
+            cout << arr[i];
+            delete (&arr[i]);
+            end_element--;
+        }
+    }
+    void display_array_one(int index)
+    {
+        cout << "ARRAY HAVE THE " << arr[index]
+             << " ON THE " << index
+             << "POSITION" << endl;
+    }
+    void append_array(int element)
+    {
+        if (size > end_element)
+        {
+            arr[end_element] = element;
+            end_element++;
+        }
+        else
+        {
+            cout << "THE STORAGE IS OVERFLOW :::::::" << endl;
+        }
+    }
+};
+class STACK_CHAR : public ARRAY_CHAR
+{
+
+public:
+    STACK_CHAR()
+    {
+        flag_creat = 0;
+    }
+    void creat_stack(int size_stack)
+    {
+        size = size_stack;
+        flag_size = 0;
+        create_array();
+    }
+    void push_stack(int element)
+    {
+        append_array(element);
+    }
+    void pop_stack()
+    {
+        delete_element(end_element - 1);
+    }
+    int peek_stack()
+    {
+        // cout << "THE TOP OF THE STACK IT HAVE THE ELEMENT: " << arr[end_element - 1] << endl;
+        return arr[end_element - 1];
+    }
+    void pop_stack_all()
+    {
+        while (end_element != 0)
+        {
+            pop_stack();
+        }
+    }
+};

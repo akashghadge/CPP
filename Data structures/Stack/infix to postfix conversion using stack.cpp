@@ -46,7 +46,7 @@ int precedence(char p)
 {
     if (p == '(' || p == ')')
     {
-        return 5;
+        return -30;
     }
     else if (p == 'S')
     {
@@ -79,7 +79,31 @@ void precedence_check(char a, int pre, int asso)
     {
         peek = stk.peek_stack();
         temp_pre = precedence(peek);
-        if (pre == -1)
+        if (pre == -30)
+        {
+            if (a == '(')
+            {
+                stk.push_stack(a);
+                break;
+            }
+            else if (a = ')')
+            {
+
+                peek = stk.peek_stack();
+
+                while (peek != '(')
+                {
+
+                    // cout << "THE VALUE OF THE PEEK IS THE :" << peek << endl;
+                    stk.pop_stack();
+                    peek = stk.peek_stack();
+                }
+                stk.pop_stack_not_cout();
+                break;
+            }
+        }
+
+        else if (pre == -1)
         {
             cout << a;
             break;

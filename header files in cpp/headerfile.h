@@ -878,6 +878,11 @@ public:
     {
         delete_element(end_element - 1);
     }
+    void pop_stack_not_cout()
+    {
+        delete (&arr[end_element - 1]);
+        end_element--;
+    }
     int peek_stack()
     {
         // cout << "THE TOP OF THE STACK IT HAVE THE ELEMENT: " << arr[end_element - 1] << endl;
@@ -890,4 +895,59 @@ public:
             pop_stack();
         }
     }
+    void pop_stack_all_not_cout()
+    {
+        while (end_element != 0)
+        {
+            pop_stack_not_cout();
+        }
+    }
 };
+int digits(int num, int *digit)
+{
+    int i = 0;
+    while (num)
+    {
+        digit[i] = num % 10;
+        num = num / 10;
+        i++;
+    }
+    return i;
+}
+int power(long int base, int expo)
+{
+    int i;
+    long int temp_base;
+    temp_base = base;
+    if (expo == 0)
+    {
+        return 1;
+    }
+    else
+    {
+
+        for (i = 1; i <= expo; i++)
+        {
+            base = base * temp_base;
+            if (i == 1)
+            {
+                base = temp_base;
+            }
+        }
+        return base;
+    }
+}
+int retrive_number(int *base, int size)
+{
+    int i = 0;
+    long int multi;
+    int num = 0;
+
+    while (i <= size)
+    {
+        multi = power(10, i);
+        num = num + (base[i] * multi);
+        i++;
+    }
+    return num;
+}

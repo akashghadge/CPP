@@ -7,15 +7,23 @@ int power(long int base, int expo)
     int i;
     long int temp_base;
     temp_base = base;
-    for (i = 1; i <= expo; i++)
+    if (expo == 0)
     {
-        base = base * temp_base;
-        if (i == 1)
-        {
-            base = temp_base;
-        }
+        return 1;
     }
-    return base;
+    else
+    {
+
+        for (i = 1; i <= expo; i++)
+        {
+            base = base * temp_base;
+            if (i == 1)
+            {
+                base = temp_base;
+            }
+        }
+        return base;
+    }
 }
 bool isprime(int temp)
 {

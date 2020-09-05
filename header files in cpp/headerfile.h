@@ -978,3 +978,15 @@ void isDuplicate(int *arr, int size)
         }
     }
 }
+void reverse_array(int *arr, int size)
+{
+    int middle = size / 2;
+    int i;
+    int j;
+    j = size - 1;
+    for (i = 0; i < middle; i++)
+    {
+        swap(arr[i], arr[j]);
+        j--;
+    }
+}

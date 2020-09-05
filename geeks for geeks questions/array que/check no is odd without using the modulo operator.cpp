@@ -9,5 +9,4 @@ int main()
 }
 int is_odd_without_modulo(int num)
 {
-    
 }

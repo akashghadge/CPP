@@ -951,3 +951,30 @@ int retrive_number(int *base, int size)
     }
     return num;
 }
+void convertBinaryToDecimal(int num, int *result)
+{
+    int i;
+    // int num_temp = num;
+    i = 0;
+    while (num)
+    {
+        result[i] = num % 2;
+        num = num / 2;
+        i++;
+    }
+}
+void isDuplicate(int *arr, int size)
+{
+    int i = 0;
+    int j = i + 1;
+    for (i = 0; i < size; i++)
+    {
+        for (j = i + 1; j < size; j++)
+        {
+            if (arr[i] == arr[j])
+            {
+                cout << arr[i] << " AT THE " << i << " POSITION AND THE " << arr[j] << " AT THE " << j << " POSITION ARE SAME ." << endl;
+            }
+        }
+    }
+}

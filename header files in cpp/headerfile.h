@@ -28,7 +28,8 @@ public:
         for (i_create; i_create < size && terminate; i_create++)
         {
             cout << "PLEASE ENTER THE NO FOR THE " << i_create << " POSITION:" << endl;
-            cin >> *(arr + i_create);
+            // cin >> *(arr + i_create);
+            cin >> arr[i_create];
             end_element++;
             cout << "WOULD YOU LIKE TO CONTINUE ENTER 1 FOR YES AND 0 FOR NO " << endl;
             cin >> terminate;
@@ -42,7 +43,7 @@ public:
         {
             cout << "ARRAY HAVE THE " << *(arr_temp + i)
                  << " ON THE " << i
-                 << "POSITION" << endl;
+                 << " POSITION" << endl;
         }
     }
     void display_array_full()
@@ -686,6 +687,43 @@ void selection_sort(int *base, int size)
         {
             swap(&base[min], &base[i]);
         }
+    }
+}
+int partion_array(int *arr, int lb, int ub)
+{
+    int pivot;
+    pivot = arr[lb];
+    int start = lb;
+    int end = ub;
+    while (start < end)
+    {
+
+        while (pivot >= arr[start])
+        {
+            start++;
+        }
+        while (pivot < arr[end])
+        {
+            end--;
+        }
+        if (start < end)
+        {
+            swap(&arr[start], &arr[end]);
+        }
+    }
+    swap(&arr[lb], &arr[end]);
+    return end;
+}
+void quick_sort(int *arr, int lb, int ub)
+{
+    // cout << "HIIIIIII" << arr[0] << endl;
+
+    int loc;
+    if (lb < ub)
+    {
+        loc = partion_array(arr, lb, ub);
+        quick_sort(arr, lb, loc - 1);
+        quick_sort(arr, loc + 1, ub);
     }
 }
 bool linear_serch(int *base, int size, int target)

@@ -1,6 +1,125 @@
 #include <iostream>
 #include <stdlib.h>
 using namespace std;
+template <class T1>
+class Array
+{
+public:
+    T1 *arr;
+    int size;
+    int end_element = 0;
+    int flag_size = 1;
+    Array() {}
+    Array(int size_temp)
+    {
+        size = size_temp;
+        flag_size = 0;
+    }
+
+    void create_array()
+    {
+        if (flag_size)
+        {
+            cout << "PLEASE ENTER THE SIZE OF THE ARRAY:" << endl;
+            cin >> size;
+        }
+        arr = new T1[size];
+        static int i_create;
+        int terminate = 1;
+        for (i_create; i_create < size && terminate; i_create++)
+        {
+            cout << "PLEASE ENTER THE NO FOR THE " << i_create << " POSITION:" << endl;
+            // cin >> *(arr + i_create);
+            cin >> arr[i_create];
+            end_element++;
+            cout << "WOULD YOU LIKE TO CONTINUE ENTER 1 FOR YES AND 0 FOR NO " << endl;
+            cin >> terminate;
+        }
+    }
+    void display_array()
+    {
+        int i;
+        T1 *arr_temp = arr;
+        for (i = 0; i < end_element; i++)
+        {
+            cout << "ARRAY HAVE THE " << *(arr_temp + i)
+                 << " ON THE " << i
+                 << " POSITION" << endl;
+        }
+    }
+    void display_array_full()
+    {
+        int i;
+        T1 *arr_temp = arr;
+        for (i = 0; i < size; i++)
+        {
+            cout << "ARRAY HAVE THE " << *(arr_temp + i)
+                 << " ON THE " << i
+                 << "POSITION" << endl;
+        }
+    }
+    void reverse_array()
+    {
+        int mid = (end_element - 1) / 2;
+        int i = 0;
+        int end = end_element;
+        for (i = 0; i <= mid; i++)
+        {
+            end--;
+            swap(&arr[i], &arr[end]);
+        }
+    }
+    void swap(T1 *a, T1 *b)
+    {
+        T1 temp;
+        temp = *a;
+        *a = *b;
+        *b = temp;
+    }
+    void delete_element(int index)
+    {
+        if (index >= end_element)
+        {
+            cout << "PLEASE ENTER THE CORRECT INDEX.:)" << endl;
+        }
+        else if (index == size - 1)
+        {
+            delete (&arr[index]);
+            end_element--;
+        }
+        else
+        {
+            int i;
+            int index_next;
+            index_next = index + 1;
+            for (i = index; i < size; i++)
+            {
+                swap(&arr[i], &arr[index_next]);
+                index_next++;
+            }
+            delete (&arr[i]);
+            end_element--;
+        }
+    }
+    void display_array_one(int index)
+    {
+        cout << "ARRAY HAVE THE " << arr[index]
+             << " ON THE " << index
+             << "POSITION" << endl;
+    }
+    void append_array(int element)
+    {
+        if (size > end_element)
+        {
+            arr[end_element] = element;
+            end_element++;
+        }
+        else
+        {
+            cout << "THE STORAGE IS OVERFLOW :::::::" << endl;
+        }
+    }
+};
 class ARRAY
 {
 public:
@@ -505,6 +624,7 @@ public:
     }
 };
 class DEQUE
+
 {
     struct node
     {
@@ -1017,6 +1137,7 @@ void isDuplicate(int *arr, int size)
     }
 }
 void reverse_array(int *arr, int size)
+
 {
     int middle = size / 2;
     int i;
@@ -1026,5 +1147,74 @@ void reverse_array(int *arr, int size)
     {
         swap(arr[i], arr[j]);
         j--;
+    }
+}
+void merge(int *arr, int lb, int mid, int ub, int *array)
+
+{
+
+    int i, j, k;
+    int n1 = mid - lb + 1;
+    int n2 = ub - mid;
+
+    /* create temp arrays */
+    int L[n1], R[n2];
+
+    /* Copy data to temp arrays L[] and R[] */
+    for (i = 0; i < n1; i++)
+        L[i] = arr[lb + i];
+    for (j = 0; j < n2; j++)
+        R[j] = arr[mid + 1 + j];
+
+    /* Merge the temp arrays back into arr[l..r]*/
+    i = 0;  // Initial index of first subarray
+    j = 0;  // Initial index of second subarray
+    k = lb; // Initial index of merged subarray
+    while (i < n1 && j < n2)
+    {
+        if (L[i] <= R[j])
+        {
+            arr[k] = L[i];
+            i++;
+        }
+        else
+        {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    /* Copy the remaining elements of L[], if there 
+       are any */
+    while (i < n1)
+    {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+
+    /* Copy the remaining elements of R[], if there 
+       are any */
+    while (j < n2)
+    {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+    for (i = 0; i < ub; i++)
+    {
+        array[i] = arr[i];
+    }
+}
+void merge_sort(int *arr, int lb, int ub, int *result)
+{
+
+    if (lb < ub)
+    {
+        int mid = (lb + ub) / 2;
+        merge_sort(arr, lb, mid, result);
+        merge_sort(arr, mid + 1, ub, result);
+        merge(arr, lb, mid, ub, result);
     }
 }

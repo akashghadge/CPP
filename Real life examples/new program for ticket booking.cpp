@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-class PLANE
+class ADMIN
 {
     // static int index_no;
 public:
@@ -39,6 +39,7 @@ public:
         tickets_sell_buss = 0;
         tickets_sell_eco = 0;
         tickets_sell_first = 0;
+
         cout << "ENTER THE TOTAL SEATS IN THE FIRST CLASS" << endl;
         cin >> *total_seats_first;
 
@@ -47,6 +48,9 @@ public:
 
         cout << "ENTER THE TOTAL SEATS IN THE ECO CLASS" << endl;
         cin >> *total_seats_eco;
+        *tickets_rem_buss = *total_seats_buss;
+        *tickets_rem_eco = *total_seats_eco;
+        *tickets_rem_first = *total_seats_first;
     }
     void setPrize()
     {
@@ -60,8 +64,7 @@ public:
         cin >> *ticket_prizze_eco;
     }
 
-public:
-    PLANE() {}
+    ADMIN() {}
     void getSellinfo()
     {
         cout << "ECO SELL TICKES ARE :" << tickets_sell_eco << endl;
@@ -74,9 +77,10 @@ public:
     }
     void ticketRem()
     {
-        *tickets_rem_eco = *total_seats_eco - *tickets_sell_eco;
-        *tickets_rem_buss = *total_seats_buss - *tickets_sell_buss;
-        *tickets_rem_first = *total_seats_first - *tickets_sell_first;
+        // *tickets_rem_eco = *total_seats_eco - *tickets_sell_eco;
+        // *tickets_rem_buss = *total_seats_buss - *tickets_sell_buss;
+        // *tickets_rem_first = *total_seats_first - *tickets_sell_first;
+
         cout << "TICKETS REMAINING IN ECO CLASS IS " << *tickets_rem_eco << endl;
         cout << "TICKETS REMAINING IN BUSS CLASS IS " << *tickets_rem_buss << endl;
         cout << "TICKETS REMAINING IN FIRST CLASS IS " << *tickets_rem_first << endl;
@@ -91,43 +95,25 @@ public:
     {
         if (a == 1)
         {
-            tickets_rem_first--;
+            (*tickets_rem_first)--;
         }
         else if (a == 2)
         {
-            tickets_rem_buss--;
+            (*tickets_rem_buss)--;
         }
         else if (a == 3)
         {
-            tickets_rem_eco--;
+            (*tickets_rem_eco)--;
         }
     }
 };
-class ADMIN : public PLANE
-{
-public:
-    ADMIN() {}
-    void SetName()
-    {
-        setName();
-    }
-    void SetValue()
-    {
-        setValue();
-    }
-    void SetPrize()
-    {
-        setPrize();
-    }
-};
-
-class CUSTOMER : protected PLANE
+class CUSTOMER : virtual protected ADMIN
 {
     int choice;
 
 public:
     CUSTOMER() {}
-    void setValue(PLANE &obj)
+    void setValue(ADMIN &obj)
     {
         this->total_seats_buss = obj.total_seats_buss;
         this->total_seats_eco = obj.total_seats_eco;
@@ -148,25 +134,28 @@ public:
         getPrize();
         cout << "PLEASE SELECT WHICH ONE WOULD LIKE TO BOOK:" << endl;
         cout << "1)FIRST CLASS" << endl;
-        cout << "1)BUSS CLASS" << endl;
-        cout << "1)ECO CLASS" << endl;
+        cout << "2)BUSS CLASS" << endl;
+        cout << "3)ECO CLASS" << endl;
         cin >> choice;
-        if (choice == 1 && tickets_rem_first > 0)
+        if (choice == 1 && *tickets_rem_first > 0)
         {
-            tickets_rem_first--;
+            // *tickets_rem_first--;
+            decrement(1);
             cout << "YOU SUCCEFULY BOOK THE TICKET..." << endl;
             cout << "THANK YOU FOR CHOOSING US" << endl;
         }
 
-        else if (choice == 2 && tickets_rem_buss > 0)
+        else if (choice == 2 && *tickets_rem_buss > 0)
         {
-            tickets_rem_first--;
+            decrement(2);
+            // *tickets_rem_first--;
             cout << "YOU SUCCEFULY BOOK THE TICKET..." << endl;
             cout << "THANK YOU FOR CHOOSING US" << endl;
         }
-        else if (choice == 3 && tickets_rem_eco > 0)
+        else if (choice == 3 && *tickets_rem_eco > 0)
         {
-            tickets_rem_first--;
+            // *tickets_rem_first--;
+            decrement(3);
             cout << "YOU SUCCEFULY BOOK THE TICKET..." << endl;
             cout << "THANK YOU FOR CHOOSING US" << endl;
         }
@@ -176,17 +165,38 @@ public:
         }
     }
 };
-
 int main()
 {
     ADMIN a1;
-    a1.SetName();
-    a1.SetValue();
-    a1.SetPrize();
-    a1.getName();
-    a1.getSellinfo();
-    a1.getPrize();
     CUSTOMER c1;
-    c1.setValue(a1);
-    c1.bookTicket();
+
+    int choice_login;
+    while (choice_login)
+    {
+        cout << "!!!!!!!!!! MENU !!!!!!!!!!" << endl;
+        cout << "1)ADMIN LOG-IN" << endl;
+        cout << "2)CUSTOMER LOG-IN" << endl;
+        cout << "0)EXIT" << endl;
+        cin >> choice_login;
+        if (choice_login == 1)
+        {
+            cout << "PLEASE SET THE VALUES:" << endl;
+            a1.setName();
+            a1.setPrize();
+            a1.setValue();
+            a1.getName();
+            a1.getSellinfo();
+            a1.getPrize();
+            c1.setValue(a1);
+        }
+        else if (choice_login == 2)
+        {
+            cout << "BOOKING THE TICKET:" << endl;
+            c1.bookTicket();
+        }
+        else
+        {
+            cout << "EXITING......." << endl;
+        }
+    }
 }

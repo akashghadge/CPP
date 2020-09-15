@@ -1218,3 +1218,28 @@ void merge_sort(int *arr, int lb, int ub, int *result)
         merge(arr, lb, mid, ub, result);
     }
 }
+void shell_sort(int *arr, int size)
+{
+    int gap = size / 2;
+    int j;
+    int i;
+    for (gap; gap >= 1;)
+    {
+        for (j = gap; j < size; j++)
+        {
+            for (i = j - gap; i >= 0;)
+            {
+                if (arr[i + gap] > arr[i])
+                {
+                    break;
+                }
+                else
+                {
+                    swap(arr[i + gap], arr[i]);
+                }
+                i = i - gap;
+            }
+        }
+        gap = gap / 2;
+    }
+}

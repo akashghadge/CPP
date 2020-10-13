@@ -7,7 +7,7 @@
         "name": "(gdb) Launch",
         "type": "cppdbg",
         "request": "launch",
-        "program": "${workspaceFolder}/quick sort.exe",
+        "program": "${workspaceFolder}/quick.exe",
         "args": [],
         "stopAtEntry": false,
         "cwd": "${workspaceFolder}",

@@ -1,32 +1,45 @@
 #include <iostream>
 using namespace std;
-int loc;
-static int a;
+// for this que you have to find the nTH or kTH smallest elemenet in the array in linear time and the o(1) space
+
+// for this you should sort the array in linear time  using quick sort algo
 void quick_sort(int *, int, int);
-void swap_element(int *, int *);
-int main()
+int partition(int *, int, int);
+void swap_element(int *a, int *b);
+void printArray(int *a, int size)
 {
-    int size;
-    cin >> size;
-    int arr[size];
     int i;
     for (i = 0; i < size; i++)
     {
-        cout << "PLEASE ENTER THE NO IN THE ARRAY AT THE POSITION " << i << " :" << endl;
-        cin >> arr[i];
+        cout << a[i] << endl;
     }
-    quick_sort(arr, 0, size);
-    for (i = 0; i < size; i++)
-    {
-        cout << "THE NO IN THE ARRAY AT THE POSITION " << i << " IS THE : " << arr[i] << endl;
-    }
-    cout << "THE VALUE OF THE STATIC INT IS THE :" << a << endl;
+    cout << endl;
 }
-// partion array will make the only one swaping element at the time
+int main()
+{
+    int t;
+    int size;
+    cin >> t;
+    int k;
+    while (t--)
+    {
+        int i;
+        cin >> size;
+        cin >> k;
+        int arr[size];
+        for (i = 0; i < size; i++)
+        {
+            cin >> arr[i];
+        }
+        quick_sort(arr, 0, size);
+        printArray(arr, size);
+        cout << "THE " << k << "th SMALLEST ELEMENT IS : " << arr[k - 1] << endl;
+    }
+}
+
 int partion_array(int *arr, int lb, int ub)
 {
 
-    a++;
     int pivot;
     pivot = arr[lb];
     int start = lb;
@@ -66,4 +79,14 @@ void swap_element(int *a, int *b)
     temp = *a;
     *a = *b;
     *b = temp;
+}
+
+void printArray(int *a, int size)
+{
+    int i;
+    for (i = 0; i < size; i++)
+    {
+        cout << a[i] << endl;
+    }
+    cout << endl;
 }

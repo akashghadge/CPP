@@ -5,7 +5,10 @@ class Emp
 {
 public:
     T a;
-    Emp() {}
+    Emp()
+    {
+        cout << "Hello" << endl;
+    }
     Emp(T a) { this->a = a; }
     void setData(T a)
     {

@@ -1,4 +1,4 @@
-f#include <iostream>
+#include <iostream>
 static int count = 0;
 using namespace std;
 struct node
@@ -18,8 +18,8 @@ int main()
 {
     root = createTree();
     displayPreorder(root);
-    displayInorder(root);
-    displayPostorder(root);
+    // displayInorder(root);
+    // displayPostorder(root);
 }
 
 LINK createTree()

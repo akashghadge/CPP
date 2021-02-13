@@ -60,7 +60,7 @@ Link createBST(int *arr, int size)
 {
     if (size <= 0)
     {
-        cout << "tree is empty" << endl;
+        cout << "input array is empty" << endl;
     }
     else if (size == 1)
     {

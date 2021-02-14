@@ -3,6 +3,10 @@
 #include <numeric>
 using namespace std;
 
+// for time comp
+#include <chrono>
+using namespace std::chrono;
+
 void displayVec(vector<int>::iterator start, vector<int>::iterator end)
 {
     while (start != end)
@@ -14,7 +18,9 @@ void displayVec(vector<int>::iterator start, vector<int>::iterator end)
 }
 int main()
 {
-    vector<int> vec;
+    auto startTime = high_resolution_clock::now();
+    vector<int>
+        vec;
     vector<int>::iterator start;
     for (int i = 0; i < 10; i++)
     {
@@ -59,5 +65,17 @@ int main()
     vec.reserve(5); //allocate memory previously
     displayVec(start, vec.end());
 
-    cout << vec.size();
+    cout << vec.size() << endl;
+    //here size is actuall vector size to store data and capacity is value of memory which allocate of whole vector in insertion purpose esasier i.e. greater than vector size or equal to it
+
+    cout << vec.capacity() << "  " << vec.size() << endl;
+    // it will shrink capacity of vector to size for avoiding exatra space
+    vec.shrink_to_fit();
+    cout << vec.capacity() << "  " << vec.size() << endl;
+
+    // therotical size limit of vec
+    // cout << vec.max_size() << endl;
+    auto stopTime = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stopTime - startTime);
+    cout << duration.count() << endl;
 }

@@ -1,0 +1,6 @@
+here vectors are basically resizable arrays and list are same as linked list
+accesing element for vectors are quite easy and list needs to traverse all elements
+
+deleteding and inserting at middle and other than middle in list perform in some fixed time and faster and opposite in vector cause it is array
+
+size of list is larger and vector is lower

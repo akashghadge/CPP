@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-
+#include "queue"
 // declring structure
 struct Node
 {
@@ -30,11 +30,24 @@ Link create_bTree()
 // level order traversal means pre order traversal
 void LevelOrderTraversal(Link root)
 {
-    if (root != NULL)
+    // level order traversal means we traverse tree level by level
+    // i.e if in first level root is present and second level roots left and right child and after level three second levels left child have two child and second level right child have right child
+    queue<Link> q;
+    Link curr = root;
+    q.push(curr);
+    while (!q.empty())
     {
-        cout << root->data << endl;
-        LevelOrderTraversal(root->leftNode);
-        LevelOrderTraversal(root->righNode);
+        curr = q.front();
+        cout << curr->data << endl;
+        q.pop();
+        if (curr->leftNode)
+        {
+            q.push(curr->leftNode);
+        }
+        if (curr->righNode)
+        {
+            q.push(curr->righNode);
+        }
     }
 }
 

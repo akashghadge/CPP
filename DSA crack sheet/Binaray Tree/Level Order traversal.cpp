@@ -27,7 +27,6 @@ Link create_bTree()
     newnode->righNode = create_bTree();
     return newnode;
 }
-// level order traversal means pre order traversal
 void LevelOrderTraversal(Link root)
 {
     // level order traversal means we traverse tree level by level

@@ -42,7 +42,7 @@ int postOreder(Link root)
     }
 }
 
-// with only one stack
+// with two stack
 void postOrder_itrative(Link root)
 {
     stack<Link> s;
@@ -58,7 +58,7 @@ void postOrder_itrative(Link root)
         curr = s.top();
         out.push(curr->data);
         s.pop();
-        // here we need push right first here
+        // here we no need push right first here
         if (curr->leftNode)
         {
             s.push(curr->leftNode);

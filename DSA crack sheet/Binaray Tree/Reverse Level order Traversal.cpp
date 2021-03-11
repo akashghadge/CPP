@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
-
+#include "queue"
+#include "stack"
 // declring structure
 struct Node
 {
@@ -31,11 +32,29 @@ Link create_bTree()
 // reverse level traversal is basically post order traversal of tree
 void ReverseOrderTrav(Link root)
 {
-    if (root != NULL)
+    queue<Link> q;
+    Link curr = root;
+    q.push(curr);
+    stack<int> out;
+    while (!q.empty())
     {
-        ReverseOrderTrav(root->leftNode);
-        ReverseOrderTrav(root->righNode);
-        cout << root->data << endl;
+        curr = q.front();
+        out.push(curr->data);
+        q.pop();
+        if (curr->righNode)
+        {
+            q.push(curr->righNode);
+        }
+        if (curr->leftNode)
+        {
+            q.push(curr->leftNode);
+        }
+    }
+    while (!out.empty())
+    {
+        int data = out.top();
+        cout << data << " " << endl;
+        out.pop();
     }
 }
 

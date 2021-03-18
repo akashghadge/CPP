@@ -8,16 +8,18 @@ struct node
 typedef struct node *LINK;
 LINK head = NULL;
 LINK temp = NULL;
-void create_list();
+LINK create_list();
 void display();
 void reverse();
+LINK reverseRec(LINK head);
 int main()
 {
-    create_list();
-    reverse();
-    display();
+    LINK head = create_list();
+    // reverse();
+    reverseRec(head);
+    // display();
 }
-void create_list()
+LINK create_list()
 {
     LINK newnode;
     int terminate = 1;
@@ -43,6 +45,7 @@ void create_list()
         cout << "ARE YOU WANT TO CONTINUE:" << endl;
         cin >> terminate;
     }
+    return head;
 }
 void display()
 {
@@ -69,4 +72,14 @@ void reverse()
         current = nextnode;
     }
     head = prev;
+}
+
+LINK reverseRec(LINK head)
+{
+    if (head == NULL)
+    {
+        return NULL;
+    }
+    reverseRec(head->next);
+    cout << head->data << " " << endl;
 }

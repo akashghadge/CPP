@@ -8,6 +8,7 @@
         "string_view": "cpp",
         "initializer_list": "cpp",
         "utility": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "complex": "cpp"
     }
 }

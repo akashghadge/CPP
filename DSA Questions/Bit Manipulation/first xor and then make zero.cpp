@@ -10,6 +10,8 @@ vector<vector<int>> xorZero(vector<int> n)
     {
         n[i] ^= n[i + 1];
     }
+    // for filling values 0,-1,1 or char you can use memset function it not work on random charector
+    //  memset(arr, 0, sizeof(arr));
     vector<int> ansTemp(n.size(), 0);
     ans.push_back(n);
     ans.push_back(ansTemp);

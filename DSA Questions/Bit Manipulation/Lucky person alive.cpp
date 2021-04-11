@@ -74,4 +74,5 @@ int find(int N)
 }
 int main()
 {
+    cout << find(9) << endl;
 }

@@ -44,7 +44,24 @@ int firstDiffBit(int a, int b)
     }
     return -1;
 }
+
+int firstDiffBitXor(int a, int b)
+{
+    int XOR = a ^ b;
+    int m = 0;
+    while (XOR)
+    {
+        if (XOR & 1)
+        {
+            return m + 1;
+        }
+        XOR = XOR >> 1;
+        m++;
+    }
+    return -1;
+}
 int main()
 {
-    cout << firstDiffBit(10, 10) << endl;
+    cout << firstDiffBit(10, 6) << endl;
+    cout << firstDiffBitXor(10, 6) << endl;
 }

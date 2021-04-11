@@ -27,13 +27,31 @@ Expected Auxiliary Space: O(1)
 
 #include <iostream>
 using namespace std;
+#include <stack>
+stack<int> bitStack;
+void PrintBit(int n)
+{
+    while (n)
+    {
+        bitStack.push((n & 1));
+        n = n >> 1;
+    }
+    while (!bitStack.empty())
+    {
+        cout << bitStack.top() << " ";
+        bitStack.pop();
+    }
+    cout << endl;
+}
 long long int convertEvenBitToZero(long long int n)
 {
     // code here
     // here mask 0xa only gives mask of all all odd bits are on
     n = n & 0xaaaaaaaa;
+    PrintBit(0xaa);
     return n;
 }
 int main()
 {
+    convertEvenBitToZero(5);
 }

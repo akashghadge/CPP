@@ -47,7 +47,23 @@ unsigned int getFirstSetBit(int n)
     }
     return 0;
 }
+int FirstSet(int n)
+{
+    n = n & -n;
+    int m = 0;
+    while (n)
+    {
+        if (n & 1)
+        {
+            return m + 1;
+        }
+        n = n >> 1;
+        m++;
+    }
+    return 0;
+}
 int main()
 {
-    cout << getFirstSetBit(9);
+    cout << getFirstSetBit(16) << endl;
+    cout << FirstSet(16);
 }

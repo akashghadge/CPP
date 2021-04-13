@@ -9,6 +9,7 @@
         "initializer_list": "cpp",
         "utility": "cpp",
         "chrono": "cpp",
-        "complex": "cpp"
+        "complex": "cpp",
+        "bitset": "cpp"
     }
 }

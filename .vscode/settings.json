@@ -10,6 +10,8 @@
         "utility": "cpp",
         "chrono": "cpp",
         "complex": "cpp",
-        "bitset": "cpp"
+        "bitset": "cpp",
+        "regex": "cpp",
+        "valarray": "cpp"
     }
 }

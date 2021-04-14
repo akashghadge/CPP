@@ -42,7 +42,7 @@ int numberOfValidWords(vector<string> puzzels, vector<string> words)
                 {
                     finalCount++;
                 }
-            }
+            } 
         }
         cout << puzzel << " -> " << finalCount << endl;
     }

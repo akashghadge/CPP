@@ -20,6 +20,7 @@ void printArray(int *arr, int size)
     cout << endl;
 }
 int bestTime(int *, int);
+int usingKadensAlgo(int *, int);
 int main()
 {
     int t;
@@ -32,7 +33,9 @@ int main()
         setArray(arr, size);
         printArray(arr, size);
         int result = bestTime(arr, size);
+        int res = usingKadensAlgo(arr, size);
         cout << result << endl;
+        cout << res << endl;
     }
 }
 
@@ -50,6 +53,27 @@ int bestTime(int *arr, int size)
             {
                 profit = arr[j] - arr[i];
             }
+        }
+    }
+    return profit;
+}
+
+int usingKadensAlgo(int *arr, int size)
+{
+    int profit = INT8_MIN;
+    int currentProfit = 0;
+    int currentStock = arr[0];
+    for (int i = 0; i < size; i++)
+    {
+        currentProfit += (arr[i] - currentStock);
+        currentStock = arr[i];
+        if (currentProfit < 0)
+        {
+            currentProfit = 0;
+        }
+        if (currentProfit > profit)
+        {
+            profit = currentProfit;
         }
     }
     return profit;

@@ -16,7 +16,7 @@ int main()
     }
 
     convertBinaryToDecimal(num, result);
-    cout << "HIIIIIII" << endl;
+    // cout << "HIIIIIII" << endl;
     for (i = 31; i >= 0; i--)
     {
         cout << result[i];

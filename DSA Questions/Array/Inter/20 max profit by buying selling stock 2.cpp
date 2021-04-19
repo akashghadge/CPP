@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 #include <vector>
+// it is dp question and will get solved with basic array approch
 void printVector(vector<int> vec)
 {
     for (int i = 0; i < vec.size(); i++)

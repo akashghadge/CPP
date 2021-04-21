@@ -8,7 +8,7 @@ int *sumofArray(int *arr1, int s1, int *arr2, int s2)
     int j = s2 - 1;
     int k = s3 - 1;
     int carry = 0;
-    int sum = 0;
+    int sum = 0; 
     while (k >= 0)
     {
         if (i >= 0)

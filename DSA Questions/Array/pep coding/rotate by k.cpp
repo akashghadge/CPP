@@ -1,16 +1,31 @@
 #include <iostream>
 using namespace std;
+int reverseArrayRange(int *arr, int i, int j)
+{
+    int l1 = i;
+    int r1 = j;
+    while (l1 < r1)
+    {
+        swap(arr[l1], arr[r1]);
+        l1++;
+        r1--;
+    }
+}
 int rotate(int *arr, int size, int k)
 {
-    for (int i = 0; i < size; i++)
+    // for getting larger values of k
+    k = k % size;
+    if (k < 0)
     {
-        swap(arr[i], arr[(i + k + size) % size]);
+        k = k + size;
     }
-
-    for (int i = 0; i < size; i++)
-    {
-        cout << arr[i] << " ";
-    }
+    // part1
+    reverseArrayRange(arr, 0, size - k - 1);
+    // part2
+    reverseArrayRange(arr, size - k, size - 1);
+    // all array
+    reverseArrayRange(arr, 0, size - 1);
+    return 0;
 }
 int main()
 {
@@ -18,4 +33,8 @@ int main()
     int k;
     cin >> k;
     rotate(arr, 5, k);
+    for (int i = 0; i < 5; i++)
+    {
+        cout << arr[i] << " ";
+    }
 }

@@ -13,26 +13,31 @@ void printVector(vector<vector<int>> vec)
         cout << endl;
     }
 }
-vector<vector<int>> mergeIn(vector<vector<int>> res)
+vector<vector<int>> mergeIn(vector<vector<int>> intervals)
 {
-    sort(res.begin(), res.end());
-    for (int i = 1; i < res.size(); i++)
+    vector<vector<int>> vect;
+    if (intervals.size() == 1)
     {
-        if (res[i][1] > res[i - 1][1])
+        return intervals;
+    }
+    sort(intervals.begin(), intervals.end());
+    int a = intervals[0][0];
+    int b = intervals[0][1];
+    for (int j = 1; j < intervals.size(); j++)
+    {
+        if (intervals[j][0] <= b)
         {
-            vector<int> temp = {
-
-                res[i - 1][0],
-                res[i][1]
-
-            };
-
-            res.erase(res.begin() + i - 1);
-            res.erase(res.begin() + i - 1);
-            res.insert(res.begin() + i - 1, temp);
+            b = max(b, intervals[j][1]);
+        }
+        else
+        {
+            vect.push_back({a, b});
+            a = intervals[j][0];
+            b = intervals[j][1];
         }
     }
-    return res;
+    vect.push_back({a, b});
+    return vect;
 }
 int main()
 {

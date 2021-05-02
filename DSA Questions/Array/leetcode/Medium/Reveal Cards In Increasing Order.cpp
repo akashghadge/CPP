@@ -70,7 +70,7 @@ vector<int> deckRevealedIncreasing(vector<int> &deck)
     int n = deck.size();
     int c = n - 1;
     printDeq(d);
-    d.push_front(deck[c--]);
+    // d.push_front(deck[c--]);
     d.push_front(deck[c]);
     printDeq(d);
     while (c--)

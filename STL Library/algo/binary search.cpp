@@ -12,7 +12,10 @@ void showArr(arrT arr, int size)
         cout << "Element at " << i << " index is :" << arr[i] << endl;
     }
 }
-
+void fun(int a)
+{
+    cout << "hello " << a << endl;
+}
 int main()
 {
     int nums[] = {1, 3, 4, 6, 7, 9};
@@ -29,4 +32,6 @@ int main()
     {
         cout << "is present" << endl;
     }
+    vector<int> vec = {1, 2, 3, 4, 5, 6, 7, 8};
+    for_each(vec.begin(), vec.end(), fun);
 }

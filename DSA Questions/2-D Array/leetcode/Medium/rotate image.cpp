@@ -56,7 +56,7 @@ public:
             {
                 swap(m[i][j], m[i][k]);
             }
-        }
+        } 
     }
 };
 int main()

@@ -1,20 +1,15 @@
 #include <iostream>
 using namespace std;
-bool isLand(int N, int x, int k)
+bool isLand(long long N, long long x, long long k)
 {
-    for (int i = 0; i <= N; i += k)
+    if (x >= k && x % k == 0)
     {
-        if (i == x)
-        {
-            return true;
-        }
+        return true;
     }
-    for (int i = N; i >= 0; i -= k)
+
+    if ((N - x) >= k && (N - x) % k == 0)
     {
-        if (i == x)
-        {
-            return true;
-        }
+        return true;
     }
     return false;
 }
@@ -24,8 +19,8 @@ int main()
     scanf("%d", &T);
     while (T--)
     {
-        int N, x, k;
-        scanf("%d %d %d", &N, &x, &k);
-        isLand(N + 1, x, k) ? cout << "TRUE" << endl : cout << "NO" << endl;
+        long long N, x, k;
+        cin >> N >> x >> k;
+        isLand(N + 1, x, k) ? cout << "YES" << endl : cout << "NO" << endl;
     }
 }

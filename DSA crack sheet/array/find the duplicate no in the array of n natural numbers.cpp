@@ -1,11 +1,14 @@
 #include <iostream>
 using namespace std;
-
+// here so many approches are possible
+// use two loops and find dup in o(n^2)
+// use sort and o(n) for all elements O(nlogn)
+// use map o(n) and space o(n)
+// use current arrray as map due to numbers from 1 to n+1
 int duplicate(int *, int);
 void quickSort(int *, int, int);
 int partition(int *, int, int);
 void swap_element(int *a, int *b)
-
 {
     int temp;
     temp = *a;

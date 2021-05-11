@@ -1,57 +1,38 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
-struct INTERVAL
+class Solution
 {
-    int start, end;
+public:
+    vector<vector<int>> merge(vector<vector<int>> &intervals)
+    {
+        vector<vector<int>> vect;
+        if (intervals.size() == 1)
+        {
+            return intervals;
+        }
+        sort(intervals.begin(), intervals.end());
+        int a = intervals[0][0];
+        int b = intervals[0][1];
+        for (int j = 1; j < intervals.size(); j++)
+        {
+            if (intervals[j][0] <= b)
+            {
+                b = max(b, intervals[j][1]);
+            }
+            else
+            {
+                vect.push_back({a, b});
+                a = intervals[j][0];
+                b = intervals[j][1];
+            }
+        }
+        vect.push_back({a, b});
+        return vect;
+    }
 };
-void setInterVals(struct INTERVAL *interval, int intervalCount)
-{
-    int i;
-    for (i = 0; i < intervalCount; i++)
-    {
-        cin >> interval[i].start;
-        cin >> interval[i].end;
-    }
-}
-
-void getIntervals(struct INTERVAL *interval, int intervalCount)
-{
-    int i;
-    for (i = 0; i < intervalCount; i++)
-    {
-        cout << "start is :" << interval[i].start << endl;
-        cout << "end is :" << interval[i].end << endl;
-    }
-}
 int main()
 {
-    int t;
-    cin >> t;
-    while (t--)
-    {
-        int interValCount;
-        cin >> interValCount;
-        INTERVAL i[interValCount];
-        setInterVals(i, interValCount);
-        getIntervals(i, interValCount);
-    }
-}
-
-void intervalSort()
-{
-    
-}
-
-void swapStructure(struct INTERVAL *i, struct INTERVAL *j)
-{
-    int temp1;
-    int temp2;
-    temp1 = i->start;
-    temp2 = j->start;
-
-    i->start = i->end;
-    j->start = j->end;
-
-    i->end = temp1;
-    j->end = temp2;
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    return 0;
 }

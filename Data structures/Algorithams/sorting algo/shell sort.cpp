@@ -12,16 +12,14 @@ int main()
 }
 void shell_sort(int *arr, int size)
 {
-    int gap = size / 2;
-    int j;
     int i;
-    for (gap; gap >= 1;)
+    for (int gap = size / 2; gap >= 1; gap = gap / 2)
     {
         cout << "HO" << gap << endl;
 
-        for (j = gap; j < size; j++)
+        for (int j = gap; j < size; j++)
         {
-            for (i = j - gap; i >= 0;)
+            for (int i = j - gap; i >= 0; i -= gap)
             {
                 if (arr[i + gap] > arr[i])
                 {
@@ -31,9 +29,7 @@ void shell_sort(int *arr, int size)
                 {
                     swap(arr[i + gap], arr[i]);
                 }
-                i = i - gap;
             }
         }
-        gap = gap / 2;
     }
 }

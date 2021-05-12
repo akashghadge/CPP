@@ -8,7 +8,7 @@ int main()
     cin.tie(NULL);
     int t;
     cin >> t;
-    for (int i = 1; i <= t; i++)
+    for (int i = 1; i <= t; i++) 
     {
         long long m, n;
         long long ct = 0;

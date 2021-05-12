@@ -1,3 +1,4 @@
+#include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -5,23 +6,28 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    int T;
-    cin >> T;
-    while (T--)
+    int t;
+    cin >> t;
+    for (int i = 1; i <= t; i++)
     {
-        int N, M;
-        cin >> N >> M;
-        int ct = 0;
-        for (int i = 1; i <= N; i++)
+        long long m, n;
+        long long ct = 0;
+        cin >> n >> m;
+        vector<long long> mp(n + 1);
+        for (int i = 0; i < n + 1; i++)
         {
-            for (int j = i + 1; j <= N; j++)
+            mp[i] = 1;
+        }
+        for (long long a = 2; a <= n; a++)
+        {
+            long long x = m % a;
+            ct += mp[x];
+            for (long long b = x; b <= n; b += a)
             {
-                if ((M % i) % j == (M % j) % i)
-                {
-                    ct++;
-                }
+                mp[b]++;
             }
         }
-        cout << ct << "\n";
+        cout << ct << endl;
     }
+    return 0;
 }

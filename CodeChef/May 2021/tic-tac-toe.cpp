@@ -53,16 +53,200 @@ Test Case 3: The first player is clearly a winner with one of the diagonals.
 using namespace std;
 int getRes(vector<string> &str)
 {
+    // rows checking
+    int flag1 = 0;
+    int row[3];
+    int col[3];
+    int dig[2];
+    for (int i = 0; i < 3; i++)
+    {
+        int ct1 = 0;
+        int ct2 = 0;
+        for (int j = 0; j < 3; j++)
+        {
+            if (str[i][j] == 'X')
+            {
+                ct1++;
+            }
+            else if (str[i][j] == 'O')
+            {
+                ct2++;
+            }
+            else
+            {
+                flag1++;
+            }
+        }
+        if (ct1 == 3)
+        {
+            row[i] = 1;
+        }
+        else if (ct2 == 3)
+        {
+            row[i] = 2;
+        }
+        else
+        {
+            row[i] = 3;
+        }
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        int ct1 = 0;
+        int ct2 = 0;
+        for (int j = 0; j < 3; j++)
+        {
+            if (str[j][i] == 'X')
+            {
+                ct1++;
+            }
+            else if (str[j][i] == 'O')
+            {
+                ct2++;
+            }
+            else
+            {
+                flag1++;
+            }
+        }
+        if (ct1 == 3)
+        {
+            col[i] = 1;
+        }
+        else if (ct2 == 3)
+        {
+            col[i] = 2;
+        }
+        else
+        {
+            col[i] = 3;
+        }
+    }
+    // digonals
+    int ct1 = 0;
+    int ct2 = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        if (str[i][i] == 'X')
+        {
+            ct1++;
+        }
+        else if (str[i][i] == 'O')
+        {
+            ct2++;
+        }
+        else
+        {
+            flag1++;
+        }
+    }
+    if (ct1 == 3)
+    {
+        dig[0] = 1;
+    }
+    else if (ct2 == 3)
+    {
+        dig[0] = 2;
+    }
+    else
+    {
+        dig[0] = 3;
+    }
+
+    ct1 = 0;
+    ct2 = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        if (str[i][2 - i] == 'X')
+        {
+            ct1++;
+        }
+        else if (str[i][2 - i] == 'O')
+        {
+            ct2++;
+        }
+        else
+        {
+            flag1++;
+        }
+    }
+    if (ct1 == 3)
+    {
+        dig[1] = 1;
+    }
+    else if (ct2 == 3)
+    {
+        dig[1] = 2;
+    }
+    else
+    {
+        dig[1] = 3;
+    }
+
+    // check if any row col dig is won or not
+    ct1 = 0;
+    ct2 = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        if (row[i] == 1)
+        {
+            ct1++;
+        }
+        else if (row[i] == 2)
+        {
+            ct2++;
+        }
+        if (col[i] == 1)
+        {
+            ct1++;
+        }
+        else if (col[i] == 2)
+        {
+            ct2++;
+        }
+    }
+    // for dig
+    for (int i = 0; i < 2; i++)
+    {
+        if (dig[i] == 1)
+        {
+            ct1++;
+        }
+        else if (dig[i] == 2)
+        {
+            ct2++;
+        }
+    }
+    if (ct2 > 0 && ct1 > 0) //if both won
+    {
+        return 3;
+    }
+    else if ((ct2 > 0 || ct1 > 0) || flag1 == 0) //any one or not anyone won game and also no extra place remainaing
+    {
+        return 1;
+    }
+    else //extraplace is remianing and no one is won
+    {
+        return 2;
+    }
 }
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     int T;
+    cin >> T;
     while (T--)
     {
-        vector<string> str(3);
-        cin >> str[0] >> str[1] >> str[2];
-        cout << getRes(str);
+        vector<string> str;
+        for (int i = 0; i < 3; i++)
+        {
+            string t;
+            cin >> t;
+            str.push_back(t);
+            // cout << t;
+        }
+
+        cout << getRes(str) << "\n";
     }
 }

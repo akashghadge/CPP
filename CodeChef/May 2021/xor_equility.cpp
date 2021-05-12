@@ -10,7 +10,7 @@ long long power(long long y, long long x = 2)
         if (y & 1)
             res = ((res % M) * (x % M)) % M;
 
-        // n must be even now
+        // n must be even  now
         y = y >> 1;                  // y = y/2
         x = ((x % M) * (x % M)) % M; // Change x to x^2
     }

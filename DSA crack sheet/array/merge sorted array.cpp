@@ -86,7 +86,7 @@ void mergeOptimise(long long arr1[], long long arr2[], int n, int m)
 
     // Untill i less than equal to k
     // or j is less tha m
-    while (i <= k and j < m)
+    while (i <= k && j < m)
     {
         if (arr1[i] < arr2[j])
             i++;

@@ -9,7 +9,7 @@ vector<int> search(vector<vector<int>> m, int target)
     }
 
     int n = m.size();
-    int i = 0, j = m[0].size() - 1;
+    int i = 0, j = m[0].size() - 1; 
     while (i < m.size() || j >= 0)
     {
         if (m[i][j] == target)

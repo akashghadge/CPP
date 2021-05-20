@@ -89,7 +89,7 @@ public:
         for (int i = 0; i < r; i++)
         {
             // Finding the minimum element
-            if (m[i][0] < min)
+            if (m[i][0] < min) 
                 min = m[i][0];
 
             // Finding the maximum element

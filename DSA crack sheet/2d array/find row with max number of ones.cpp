@@ -48,7 +48,7 @@ public:
     {
         // code here
         int i = 0;
-        int ct = 0;
+        int ct = 0; 
         int row = 0;
         int total = 0;
         while (i < n)

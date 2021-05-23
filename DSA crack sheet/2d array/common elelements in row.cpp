@@ -50,5 +50,5 @@ int main()
 
     printCommonElements(mat);
 
-    return 0;
+    return 0; 
 }

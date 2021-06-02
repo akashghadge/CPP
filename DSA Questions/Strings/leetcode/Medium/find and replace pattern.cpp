@@ -23,6 +23,54 @@ Output: ["a","b","c"]
 #include <bits/stdc++.h>
 #define en "\n"
 using namespace std;
+class Solution {
+public:
+    vector<string> findAndReplacePattern(vector<string>& words, string p) {
+        vector<string>res;
+        map<char,vector<int>>m1;
+        int n=p.length();
+        for(int i=0;i<n;i++)
+        {
+            m1[p[i]].push_back(i);
+        }
+        
+       
+        for(int k=0;k<words.size();k++)
+        {
+            string s=words[k];
+            map<char,vector<int>>m2;
+            for(int i=0;i<n;i++)
+            {
+                m2[s[i]].push_back(i);
+            }
+            int f=1;
+            
+           for(int i=0;i<n;i++)
+           {
+               vector<int>temp1=m2[s[i]];
+               vector<int>temp2=m1[p[i]];
+               if(temp1.size()!=temp2.size())
+               {
+                   f=0;
+                   break;
+               }
+               for(int j=0;j<temp1.size();j++)
+               {
+                   if(temp1[j]!=temp2[j])
+                   {
+                       f=0;
+                       break;
+                   }
+               }
+           }
+            if(f==1)
+            {
+                res.push_back(s);
+            }
+        }
+        return res;
+    }
+};
 void printVectorMask(vector<int> vec)
 {
     for (int i = 0; i < vec.size(); i++)

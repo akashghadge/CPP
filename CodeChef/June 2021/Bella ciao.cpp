@@ -52,15 +52,23 @@ Languages:	CPP14, C, JAVA, PYTH 3.6, PYTH, CS2, ADA, PYPY, PYP3, TEXT, CPP17, PA
 #define en "\n"
 using namespace std;
 long long TotalDay, interval, startM, increment;
-int totalMoney()
+long long totalMoney()
 {
-    int curr = 0;
-    vector<int> timeLine(TotalDay + 1, 0);
-    for (int i = 1; i < TotalDay; i += interval)
+    // for inital days where no increment are there
+    long long withoutInc = 1LL * interval * startM;
+    TotalDay -= interval;
+    // incremented period
+    long long withInc1 = 0;
+    long long currInc = increment;
+    while (interval < TotalDay)
     {
-        timeLine[i] = curr;
-        curr += increment;
+        withInc1 += (startM + currInc) * 1LL * interval;
+        currInc += increment;
+        TotalDay -= interval;
     }
+
+    long long remMoney = max(0LL, (TotalDay * (startM + currInc)));
+    return (withoutInc + withInc1 + remMoney);
 }
 int main()
 {

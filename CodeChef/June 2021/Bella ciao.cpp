@@ -52,23 +52,43 @@ Languages:	CPP14, C, JAVA, PYTH 3.6, PYTH, CS2, ADA, PYPY, PYP3, TEXT, CPP17, PA
 #define en "\n"
 using namespace std;
 long long TotalDay, interval, startM, increment;
+// long long totalMoney()
+// {
+//     // for inital days where no increment are there
+//     long long withoutInc = 1LL * interval * startM;
+//     TotalDay -= interval;
+//     // incremented period
+//     long long withInc1 = 0;
+//     long long currInc = increment;
+//     while (interval < TotalDay)
+//     {
+//         withInc1 += (startM + currInc) * 1LL * interval;
+//         currInc += increment;
+//         TotalDay -= interval;
+//     }
+
+//     long long remMoney = max(0LL, (TotalDay * (startM + currInc)));
+//     return (withoutInc + withInc1 + remMoney);
+// }
 long long totalMoney()
 {
-    // for inital days where no increment are there
-    long long withoutInc = 1LL * interval * startM;
+    long long TotalDayOriginal = TotalDay;
     TotalDay -= interval;
-    // incremented period
-    long long withInc1 = 0;
-    long long currInc = increment;
-    while (interval < TotalDay)
-    {
-        withInc1 += (startM + currInc) * 1LL * interval;
-        currInc += increment;
-        TotalDay -= interval;
-    }
+    long long peroid = TotalDay / interval;
+    long long remDays = TotalDay % interval;
 
-    long long remMoney = max(0LL, (TotalDay * (startM + currInc)));
-    return (withoutInc + withInc1 + remMoney);
+    // go for amount 1
+    long long sumOfAllPeriod = 1LL * (peroid * (peroid + 1)) / 2;
+    long long amountInPeriod = sumOfAllPeriod * interval * increment;
+    // cout << "Period :" << amountInPeriod << endl;
+
+    // for rem days
+    long long sumForRemDays = 1LL * remDays * increment * (peroid + 1);
+    // cout << "rem :" << sumForRemDays << endl;
+
+    long long output = amountInPeriod + sumForRemDays + (TotalDayOriginal * startM);
+
+    return output;
 }
 int main()
 {

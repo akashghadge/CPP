@@ -39,44 +39,45 @@ Constraints:
 
 */
 
+
 #include <bits/stdc++.h>
 #define en "\n"
 #define ll long long
 using namespace std;
-class Solution
-{
-public:
-    // Function to generate a short url from integer ID
-    string idToShortURL(long long int n)
-    {
-        // code here
-        string res = "";
-        while (n)
-        {
-            int rem = n % 62;
-            n /= 62;
-            char ch;
-            if (rem < 26)
-            {
-                ch = 'a' + rem;
-            }
-            else if (rem < 52)
-            {
-                ch = 'A' + (rem - 26);
-            }
-            else
-            {
-                ch = '0' + (rem - 52);
-            }
-            res += ch;
-        }
-        reverse(res.begin(), res.end());
-        return res;
-    }
+class Solution{
+public:	
+
+	// Function to generate a short url from integer ID
+	string idToShortURL(long long int n) {
+	    // code here
+	    string res="";
+	    while(n)
+	    {
+	        int rem=n%62;
+	        n/=62;
+	        char ch;
+	        if(rem<26)
+	        {
+	            ch='a'+rem;
+	        }
+	        else if(rem<52)
+	        {
+	            ch='A'+(rem -26);
+	        }
+	        else
+	        {
+	            ch='0'+(rem-52);
+	        }
+	        res+=ch;
+	    }
+	    reverse(res.begin(),res.end());
+	    return res;
+	}
+
 };
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
+ios_base::sync_with_stdio(false);
+cin.tie(NULL);
     return 0;
 }

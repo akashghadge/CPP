@@ -34,10 +34,49 @@ Constraints:
 #define en "\n"
 #define ll long long
 using namespace std;
+bool sol(string wild, string pattern)
+{
+	for (int i = 0, j = 0; i < wild.size() && j < pattern.size();)
+	{
+		if (wild[i] == '*')
+		{
+			i++;
+			while (wild[i] != pattern[j])
+			{
+				j++;
+			}
+		}
+		else if (wild[i] == '?')
+		{
+			i++;
+			j++;
+		}
+		else if (wild[i] == pattern[j])
+		{
+			i++;
+			j++;
+		}
 
+		else if (wild[i] != pattern[j])
+		{
+			return false;
+		}
+	}
+	return true;
+}
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    return 0;
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	int T;
+	cin >> T;
+	string wild;
+	string pattern;
+	while (T--)
+	{
+		cin >> wild >> pattern;
+		cout << (sol(wild, pattern) ? "Yes" : "NO") << en;
+	}
+
+	return 0;
 }

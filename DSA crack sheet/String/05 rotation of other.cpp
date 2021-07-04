@@ -23,6 +23,22 @@ bool check(string str1, string str2)
     }
     return true;
 }
+bool areRotations(string s1, string s2)
+{
+    // Your code here
+    if (s1.size() != s2.size())
+        return false;
+    s1 += s1;
+    int val = s1.find(s2);
+    if (val == -1)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
 int main()
 {
     ios_base::sync_with_stdio(false);

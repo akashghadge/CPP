@@ -44,9 +44,26 @@ Test Case 3: We can use 2 as the denomination and we need not change the salary 
 #define en "\n"
 #define ll long long
 using namespace std;
+int N;
+int sol(vector<ll> &arr)
+{
+}
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+    int T;
+    cin >> T;
+    while (T--)
+    {
+        cin >> N;
+        vector<ll> arr(N, 0);
+        for (int i = 0; i < N; i++)
+        {
+            cin >> arr[i];
+        }
+        cout << sol(arr) << en;
+    }
+
     return 0;
 }

@@ -1,3 +1,8 @@
+/*
+str1 -> xy
+str2 -> 12
+res -> x1y2
+*/
 #include <bits/stdc++.h>
 #define en "\n"
 using namespace std;

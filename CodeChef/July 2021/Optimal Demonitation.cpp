@@ -45,8 +45,44 @@ Test Case 3: We can use 2 as the denomination and we need not change the salary 
 #define ll long long
 using namespace std;
 int N;
-int sol(vector<ll> &arr)
+void printVector(vector<ll> vec)
 {
+    for (int i = 0; i < vec.size(); i++)
+    {
+        cout << vec[i] << " ";
+    }
+    cout << en;
+}
+ll sol(vector<ll> &arr)
+{
+    // firstly check the gcd of elements every time one element is elimimated
+    if (N == 1)
+    {
+        return 1;
+    }
+    ll minSalry = INT_MAX;
+    for (int i = 0; i < arr.size(); i++)
+    {
+        ll totalGCD = 0;
+        // cout << "Value of I : " << i << en;
+        for (int j = 0; j < arr.size(); j++)
+        {
+            if (i == j)
+                continue;
+            totalGCD = __gcd(totalGCD, arr[j]);
+        }
+        // cout << "Total GCD : " << totalGCD << en;
+        ll amountOfTotalSalary = 0;
+        for (int j = 0; j < arr.size(); j++)
+        {
+            if (i == j)
+                continue;
+            amountOfTotalSalary += (arr[j] / totalGCD);
+        }
+        // cout << "Total Salary : " << amountOfTotalSalary << en;
+        minSalry = min(minSalry, amountOfTotalSalary);
+    }
+    return minSalry + 1;
 }
 int main()
 {
@@ -64,6 +100,5 @@ int main()
         }
         cout << sol(arr) << en;
     }
-
     return 0;
 }

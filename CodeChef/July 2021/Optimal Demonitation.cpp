@@ -45,44 +45,81 @@ Test Case 3: We can use 2 as the denomination and we need not change the salary 
 #define ll long long
 using namespace std;
 int N;
-void printVector(vector<ll> vec)
+// ll sol(vector<ll> &arr)
+// {
+//     // firstly check the gcd of elements every time one element is elimimated
+//     if (N == 1)
+//     {
+//         return 1;
+//     }
+//     ll minSalry = INT_MAX;
+//     for (int i = 0; i < arr.size(); i++)
+//     {
+//         ll totalGCD = 0;
+//         // cout << "Value of I : " << i << en;
+//         for (int j = 0; j < arr.size(); j++)
+//         {
+//             if (i == j)
+//                 continue;
+//             totalGCD = __gcd(totalGCD, arr[j]);
+//         }
+//         // cout << "Total GCD : " << totalGCD << en;
+//         ll amountOfTotalSalary = 0;
+//         for (int j = 0; j < arr.size(); j++)
+//         {
+//             if (i == j)
+//                 continue;
+//             amountOfTotalSalary += (arr[j] / totalGCD);
+//         }
+//         // cout << "Total Salary : " << amountOfTotalSalary << en;
+//         minSalry = min(minSalry, amountOfTotalSalary);
+//     }
+//     return minSalry + 1;
+// }
+
+ll solOp(vector<ll> arr)
 {
-    for (int i = 0; i < vec.size(); i++)
-    {
-        cout << vec[i] << " ";
-    }
-    cout << en;
-}
-ll sol(vector<ll> &arr)
-{
-    // firstly check the gcd of elements every time one element is elimimated
-    if (N == 1)
+    int size = arr.size();
+    if (size == 1)
     {
         return 1;
     }
-    ll minSalry = INT_MAX;
-    for (int i = 0; i < arr.size(); i++)
+    sort(arr.begin(), arr.end(), greater<int>());
+    vector<ll> l(arr.size());
+    vector<ll> r(arr.size());
+    vector<ll> f(arr.size());
+    ll gcd = 0;
+    for (int i = 0; i < size; i++)
     {
-        ll totalGCD = 0;
-        // cout << "Value of I : " << i << en;
-        for (int j = 0; j < arr.size(); j++)
-        {
-            if (i == j)
-                continue;
-            totalGCD = __gcd(totalGCD, arr[j]);
-        }
-        // cout << "Total GCD : " << totalGCD << en;
-        ll amountOfTotalSalary = 0;
-        for (int j = 0; j < arr.size(); j++)
-        {
-            if (i == j)
-                continue;
-            amountOfTotalSalary += (arr[j] / totalGCD);
-        }
-        // cout << "Total Salary : " << amountOfTotalSalary << en;
-        minSalry = min(minSalry, amountOfTotalSalary);
+        l[i] = gcd;
+        gcd = __gcd(gcd, arr[i]);
     }
-    return minSalry + 1;
+    gcd = 0;
+    for (int i = size - 1; i >= 0; i--)
+    {
+        r[i] = gcd;
+        gcd = __gcd(gcd, arr[i]);
+    }
+    for (int i = 0; i < size; i++)
+    {
+        f[i] = __gcd(l[i], r[i]);
+    }
+    ll maxGCD = *max_element(f.begin(), f.end());
+    for (int i = 0; i < size; i++)
+    {
+        if (maxGCD == f[i])
+        {
+            arr[i] = maxGCD;
+            break;
+        }
+    }
+
+    ll TotalSalary = 0;
+    for (int i = 0; i < size; i++)
+    {
+        TotalSalary += (arr[i] / maxGCD);
+    }
+    return TotalSalary;
 }
 int main()
 {
@@ -98,7 +135,7 @@ int main()
         {
             cin >> arr[i];
         }
-        cout << sol(arr) << en;
+        cout << solOp(arr) << en;
     }
     return 0;
 }

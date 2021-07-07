@@ -23,9 +23,9 @@ Constraints
 1≤L<R≤105
 Subtasks
 Subtask #1 (30 points):
-
 1≤Q≤5⋅103
 1≤L<R≤5⋅103
+
 Subtask #2 (70 points): Original constraints
 
 Sample Input
@@ -47,21 +47,68 @@ For the second question:
 #define en "\n"
 #define ll long long
 using namespace std;
-#define M 1e9 + 7
-ll sol(ll L, ll R)
+/* getting all chefora numbers */
+const ll CHEF = 1e5 + 1;
+vector<ll> chefora(CHEF, 0);
+vector<ll> cheforSum(CHEF, 0);
+// for getting power in logn time
+ll powerLog(ll base, ll p)
 {
+    long long res = 1;
+    long long M = 1e9 + 7;
+    while (p > 0)
+    {
+        if (p & 1)
+            res = ((res % M) * (base % M)) % M;
+
+        p = p >> 1;
+        base = ((base % M) * (base % M)) % M;
+    }
+    return res;
+}
+// actual solution
+ll solOp(ll L, ll R)
+{
+    return powerLog((chefora[L]), (cheforSum[R] - cheforSum[L]));
+}
+ll getChefora(ll num)
+{
+    ll temp = num;
+    if (num < 10)
+    {
+        return num;
+    }
+    num = num / 10;
+    while (num != 0)
+    {
+        temp = temp * 10 + num % 10;
+        num /= 10;
+    }
+    return temp;
+}
+void init()
+{
+    for (int i = 1; i < 100001; i++)
+    {
+        chefora[i] = getChefora(i);
+        cheforSum[i] = cheforSum[i - 1] + chefora[i];
+    }
 }
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+    // init chefora
+    init();
+    cout << chefora[100000] << en;
     int Q;
+    cin >> Q;
     ll L, R;
     while (Q--)
     {
         cin >> L >> R;
-        cout << sol(L, R) << en;
+        // cout << chefora[L] << en;
+        cout << solOp(L, R) << en;
     }
-
     return 0;
 }

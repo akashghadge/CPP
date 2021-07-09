@@ -7,6 +7,7 @@ Input:
 N = 2
 Arr[] = {2, 2}
 Output: 2 1
+car a
 Explanation: Repeating number is 2 and 
 smallest positive missing number is 1.
 Example 2:

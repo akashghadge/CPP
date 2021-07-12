@@ -25,22 +25,15 @@ int sol(vi arr, int target)
     while ((high - low) > 0)
     {
         mid = low + (high - low) / 2;
-        if (arr[mid] > arr[mid + 1])
+        if (arr[mid] == target)
         {
             ans = mid;
-            high = mid - 1;
-            // break;
         }
-        else if (arr[mid] < arr[start])
+        else
         {
-            high = mid - 1;
-        }
-        else if (arr[mid] > arr[start])
-        {
-            low = mid + 1;
+            
         }
     }
-    return ans;
 }
 int main()
 {

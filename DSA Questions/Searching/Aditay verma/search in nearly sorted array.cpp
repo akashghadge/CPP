@@ -8,7 +8,7 @@ using namespace std;
     cin.tie(NULL);
 int main()
 {
-    FAST;
+    FAST; 
 
     return 0;
 }

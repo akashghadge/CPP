@@ -13,27 +13,73 @@ using namespace std;
 #define FAST                          \
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL);
-int sol(vi arr, int target)
+
+int binarySearch(vi arr, int target, int low, int high)
 {
-    // basically we have some cases
-    int low = 0;
-    int high = arr.size();
-    int size = arr.size();
-    int start = 0;
     int mid;
-    int ans = -1;
-    while ((high - low) > 0)
+    while (high >= low)
     {
         mid = low + (high - low) / 2;
         if (arr[mid] == target)
         {
-            ans = mid;
+            return mid;
+        }
+        else if (arr[mid] < target)
+        {
+            low = mid + 1;
         }
         else
         {
-            
+            high = mid - 1;
         }
     }
+    return -1;
+}
+int util(vi arr)
+{
+    // basically we have some cases
+    int low = 0;
+    int high = arr.size();
+    int start = 0;
+    int mid;
+    while (low <= high)
+    {
+        mid = (high + low) / 2;
+        if (arr[mid] > arr[mid + 1])
+        {
+            return mid;
+        }
+        else if (arr[mid] < arr[start])
+        {
+            high = mid - 1;
+        }
+        else if (arr[mid] > arr[start])
+        {
+            low = mid + 1;
+        }
+    }
+    return -1;
+}
+int sol(vi arr, int target)
+{
+    // basically we have some cases
+    int part = util(arr);
+    cout << "part :" << part << en;
+    int r1 = binarySearch(arr, target, 0, part);
+    int r2 = binarySearch(arr, target, part + 1, arr.size());
+    if (r1 == -1 && r2 == -1)
+    {
+        return -1;
+    }
+    else if (r1 != -1)
+    {
+        return r1;
+    }
+    else
+    {
+        return r2;
+    }
+    return -1;
 }
 int main()
 {

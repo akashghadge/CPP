@@ -6,6 +6,7 @@ int main()
     try
     {
         throw 'a';
+        3 / 0;
     }
     catch (int a)
     {
@@ -14,5 +15,8 @@ int main()
     catch (char c)
     {
         cout << c;
+    }
+    catch (logic_error f)
+    {
     }
 }

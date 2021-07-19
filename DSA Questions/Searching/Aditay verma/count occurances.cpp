@@ -36,7 +36,7 @@ vi sol(vi &arr, int target)
         {
             low = mid + 1;
         }
-        else
+        else 
         {
             high = mid - 1;
         }

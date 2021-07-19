@@ -32,7 +32,7 @@ vi sol(vi &arr, int target)
             lowerIndex = mid;
             high = mid - 1;
         }
-        else if (arr[mid] < target)
+        else if (arr[mid] < target) 
         {
             low = mid + 1;
         }

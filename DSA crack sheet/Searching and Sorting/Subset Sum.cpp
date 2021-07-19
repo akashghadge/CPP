@@ -30,13 +30,29 @@ The following 5 subsets have a sum between -1 and 2:
 using namespace std;
 #define en "\n"
 #define vi vector<int>
+#define vll vector<ll>
 #define ll long long
 #define FAST                          \
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL);
+ll N = 1e5;
+vll subset(N);
+ll n, A, B;
+
+int sol()
+{
+    
+}
 int main()
 {
     FAST;
+    cin >> n;
+    cin >> A >> B;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> subset[i];
+    }
+    cout << sol() << en;
 
     return 0;
 }

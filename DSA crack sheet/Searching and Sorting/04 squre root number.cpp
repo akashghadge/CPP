@@ -68,5 +68,7 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+    Solution s;
+    cout << s.floorSqrt(5) << en;
     return 0;
 }

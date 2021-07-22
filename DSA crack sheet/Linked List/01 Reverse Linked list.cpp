@@ -103,6 +103,32 @@ Node *revRec(Node *head)
 {
     return util(NULL, head);
 }
+void revGroup(Node *head, int start, int end)
+{
+    int pointer = 1;
+    Node *temp = head;
+    Node *prev = NULL;
+    while (pointer < start && temp)
+    {
+        prev = temp;
+        temp = temp->next;
+        pointer++;
+    }
+
+    Node *curr = temp;
+    Node *nextNode = temp;
+    Node *stop_point = curr;
+    while (nextNode != NULL && pointer < end)
+    {
+        nextNode = nextNode->next;
+        curr->next = prev;
+        prev = curr;
+        curr = nextNode;
+        pointer++;
+    }
+    stop_point->next->next = curr;
+    stop_point->next = prev;
+}
 int main()
 {
     FAST;
@@ -115,9 +141,11 @@ int main()
     l.print();
     Node *newHead = revItr(l.getHead());
     l.setHead(newHead);
-    l.print();
+    // l.print();
     newHead = revRec(l.getHead());
     l.setHead(newHead);
+    l.print();
+    revGroup(l.getHead(), 4, 6);
     l.print();
     return 0;
 }

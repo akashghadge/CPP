@@ -50,6 +50,12 @@ using namespace std;
 class Solution
 {
 public:
+    struct Node
+    {
+        int data;
+        Node *next;
+    };
+
     //Function to check if the linked list has a loop.
     bool detectLoop(Node *head)
     {

@@ -49,3 +49,79 @@ Constraints:
 
 
 */
+#include <bits/stdc++.h>
+using namespace std;
+#define en "\n"
+#define vi vector<int>
+#define vll vector<ll>
+#define ll long long
+#define FAST                          \
+	ios_base::sync_with_stdio(false); \
+	cin.tie(NULL);
+int main()
+{
+	FAST;
+
+	return 0;
+}
+struct Node
+{
+	int data;
+	struct Node *next;
+	Node(int x)
+	{
+		data = x;
+		next = NULL;
+	}
+};
+int getCount(Node *head)
+{
+	Node *temp = head;
+	int c = 0;
+	while (temp != NULL)
+	{
+		temp = temp->next;
+		c++;
+	}
+	return c;
+}
+int intersectionPoint(Node *current1, Node *current2, int d)
+{
+	for (int i = 0; i < d; i++)
+	{
+		if (current1 == NULL)
+		{
+			return -1;
+		}
+		current1 = current1->next;
+	}
+
+	// Move both pointers of both list till they
+	// intersect with each other
+	while (current1 != NULL && current2 != NULL)
+	{
+		if (current1 == current2)
+			return current1->data;
+
+		// Move both the pointers forward
+		current1 = current1->next;
+		current2 = current2->next;
+	}
+
+	return -1;
+}
+int intersectPoint(Node *head1, Node *head2)
+{
+	// Your Code Here
+	int c1 = getCount(head1);
+	int c2 = getCount(head2);
+	int d = abs(c1 - c2);
+	if (c1 > c2)
+	{
+		return intersectionPoint(head1, head2, d);
+	}
+	else
+	{
+		return intersectionPoint(head2, head1, d);
+	}
+}

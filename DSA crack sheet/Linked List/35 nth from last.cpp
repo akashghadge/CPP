@@ -52,7 +52,7 @@ struct Node
 {
     int data;
     Node *next;
-};
+}; 
 
 int getNthFromLast(struct Node *head, int n)
 {

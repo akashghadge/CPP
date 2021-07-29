@@ -80,7 +80,7 @@ void printList(struct Node *node)
 length of linked list */
 int countNodes(struct Node *s)
 {
-    int count = 0;
+    int count = 1;
     while (s != NULL)
     {
         count++;
@@ -92,9 +92,63 @@ int countNodes(struct Node *s)
 /* Function for swapping kth nodes
 from both ends of linked list */
 // code here
+int getSize(struct Node *head)
+{
+    int size = 0;
+    while (head != NULL)
+    {
+        head = head->next;
+        size++;
+    }
+    return size;
+}
 void swapKth(struct Node **head_ref, int k)
 {
-    
+    int size = getSize(*head_ref);
+    int kC = size - k + 1;
+    if (k > size)
+        return;
+    if (2 * k - 1 == size)
+        return;
+    Node *kth, *kthPrev, *lth, *lthPrev;
+
+    kthPrev = NULL;
+    kth = *head_ref;
+    int currPos = 1;
+    while (currPos < k)
+    {
+        kthPrev = kth;
+        kth = kth->next;
+        currPos++;
+    }
+
+    lthPrev = NULL;
+    lth = *head_ref;
+    currPos = 1;
+    while (currPos < kC)
+    {
+        lthPrev = lth;
+        lth = lth->next;
+        currPos++;
+    }
+    // first and last node swaping
+    if (kthPrev == NULL || lthPrev == NULL)
+    {
+        Node *tailPrev = kthPrev ? kthPrev : lthPrev;
+        Node *tail = tailPrev->next;
+        tailPrev->next = (*head_ref);
+        tail->next = (*head_ref)->next;
+        (*head_ref)->next = NULL;
+        *head_ref = tail;
+    }
+    else
+    {
+        kthPrev->next = lth;
+        lthPrev->next = kth;
+        Node *temp = lth->next;
+        lth->next = kth->next;
+        kth->next = temp;
+    }
 }
 
 // Driver program to test above functions

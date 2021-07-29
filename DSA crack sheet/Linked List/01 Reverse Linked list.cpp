@@ -82,7 +82,7 @@ Node *revItr(Node *head)
     {
         nextNode = nextNode->next;
         curr->next = prev;
-        prev = curr;
+        prev = curr; 
         curr = nextNode;
     }
     return prev;

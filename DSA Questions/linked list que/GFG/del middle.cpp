@@ -44,7 +44,7 @@ struct Node
     {
         data = x;
         next = NULL;
-    }
+    } 
 };
 Node *deleteMid(Node *head)
 {

@@ -1,57 +1,32 @@
-// A C++ program to generate palindromic numbers
-// less than n.
 #include <bits/stdc++.h>
 using namespace std;
+#define en "\n"
+#define vi vector<int>
+#define vll vector<ll>
 #define ll long long
-// A utility for creating palindrome
-const ll CHEF = 1e8 + 7;
-ll chefora[CHEF];
-ll createPalindrome(ll input, ll b, ll isOdd)
+#define FAST                          \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(NULL);
+#include <chrono>
+using namespace std ::chrono;
+void rec(int num)
 {
-    ll n = input;
-    ll palin = input;
-
-    // checks if number of digits is odd or even
-    // if odd then neglect the last digit of input in
-    // finding reverse as in case of odd number of
-    // digits middle element occur once
-    if (isOdd)
-        n /= b;
-
-    // Creates palindrome by just appending reverse
-    // of number to itself
-    while (n > 0)
+    if (num == 1e6)
     {
-        palin = palin * b + (n % b);
-        n /= b;
+        return;
     }
-    return palin;
-}
-
-// Function to print decimal palindromic number
-void generatePalindromes(ll n)
-{
-    ll number;
-    ll i = 1;
-    while ((number = createPalindrome(i, 10, 1)) < n)
-    {
-        chefora[i] = number;
-        i++;
-    }
-    cout << i << endl;
-}
-void printVector(vector<ll> vec)
-{
-    for (int i = 0; i < vec.size(); i++)
-    {
-        cout << vec[i] << " " << endl;
-    }
-    cout << endl;
+    int arr[100000];
+    rec(num + 1);
 }
 int main()
 {
-    ll n = 1e9 + 7;
-    generatePalindromes(n);
-    cout << chefora[99999] << endl;
+    FAST;
+    auto startTime = high_resolution_clock::now();
+    rec(1);
+    auto stopTime = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stopTime - startTime);
+    float finalDur = duration.count();
+    float sec = finalDur / 1000000;
+    cout << "Time taken :" << sec << " sec" << endl;
     return 0;
 }

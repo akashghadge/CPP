@@ -76,13 +76,13 @@ typedef LinkedList::Node Node;
 Node *revItr(Node *head)
 {
     Node *curr = head;
-    Node *nextNode = head;
+    Node *nextNode = NULL;
     Node *prev = NULL;
-    while (nextNode != NULL)
+    while (curr != NULL)
     {
-        nextNode = nextNode->next;
+        nextNode = curr->next;
         curr->next = prev;
-        prev = curr; 
+        prev = curr;
         curr = nextNode;
     }
     return prev;

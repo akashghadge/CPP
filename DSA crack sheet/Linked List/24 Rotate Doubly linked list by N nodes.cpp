@@ -169,8 +169,8 @@ int main(void)
 
     cout << "Given linked list \n";
     printList(head);
-    // rotateOp(&head, N);
-    rotate(&head, N);
+    rotateOp(&head, N);
+    // rotate(&head, N);
 
     cout << "\nRotated Linked list \n";
     printList(head);

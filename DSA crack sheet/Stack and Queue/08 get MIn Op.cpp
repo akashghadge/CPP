@@ -36,17 +36,33 @@ using namespace std;
 #define FAST                          \
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL);
-// getmin have o(N) time and space also o(1)
+// getmin have o(1) time and space also o(1)
+int m = INT_MAX;
 void push(stack<int> &s, int a)
 {
     // Your code goes here
-    s.push(a);
+    if (s.size() == 0)
+    {
+        m = a;
+        s.push(a);
+    }
+    else if (m > a)
+    {
+        // encryption if val m>a
+        int val = (2 * a) - m;
+        m = a;
+        s.push(val);
+    }
+    else
+    {
+        s.push(a);
+    }
 }
 
 bool isFull(stack<int> &s, int n)
 {
     // Your code goes here
-    return s.size() >= n ? true : false;
+    return (s.size() >= n);
 }
 
 bool isEmpty(stack<int> &s)
@@ -58,31 +74,49 @@ bool isEmpty(stack<int> &s)
 int pop(stack<int> &s)
 {
     // Your code goes here
-    s.pop();
+    if (s.top() < m)
+    {
+        // decryption
+        m = (2 * m) - s.top();
+        s.pop();
+    }
+    else
+    {
+        s.pop();
+    }
 }
 
 int getMin(stack<int> &s)
 {
-    // Your code goes here
-    int len = s.size();
-    int arr[s.size()];
-    int i = 0;
-    while (!s.empty())
-    {
-        arr[i] = s.top();
-        s.pop();
-        i++;
-    }
-    int m = 1e7;
-    for (int i = 0; i < len; i++)
-    {
-        m = min(m, arr[i]);
-    }
     return m;
 }
 int main()
 {
     FAST;
-
+    stack<int> st;
+    push(st, 8);
+    cout << m << en;
+    push(st, 47);
+    cout << m << en;
+    push(st, 17);
+    cout << m << en;
+    push(st, 7);
+    cout << m << en;
+    push(st, 30);
+    cout << m << en;
+    push(st, 2);
+    cout << m << en;
+    pop(st);
+    cout << m << en;
+    pop(st);
+    cout << m << en;
+    pop(st);
+    cout << m << en;
+    pop(st);
+    cout << m << en;
+    pop(st);
+    cout << m << en;
+    pop(st);
+    cout << m << en;
     return 0;
 }

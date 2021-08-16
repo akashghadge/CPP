@@ -23,6 +23,7 @@ int rev(stack<int> &st, stack<int> &temp)
     st.pop();
     rev(st, temp);
 }
+// optimise approch
 int insert_at_bottom(stack<int> &st, int x)
 {
     if (st.size() == 0)

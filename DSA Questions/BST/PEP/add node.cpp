@@ -36,7 +36,7 @@ Node *addNode(Node *root, int val)
         root->right = addNode(root->right, val);
     }
     return root;
-}
+} 
 int main()
 {
     FAST;

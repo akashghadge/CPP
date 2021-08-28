@@ -77,7 +77,7 @@ void findPreSuc(Node *root, Node *&pre, Node *&suc, int key)
         findPreSuc(root->left, pre, suc, key);
     }
     else // go to right subtree
-    {
+    { 
         pre = root;
         findPreSuc(root->right, pre, suc, key);
     }

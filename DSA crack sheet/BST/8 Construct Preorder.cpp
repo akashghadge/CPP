@@ -20,19 +20,33 @@ struct Node
     }
 };
 // 4 1 2 3  5 6 7
-Node *helper(vector<int> preorder, int *pointer, int min, int max)
+int constructBST(vector<int> preorder, int n, int pos, Node *curr, int min, int max)
 {
-    if (preorder.size() == *pointer)
-        return NULL;
-    
+    if (pos >= n || preorder[pos] < min || preorder[pos] > max)
+        return pos;
+    if (preorder[pos] < curr->data)
+    {
+        curr->left = new Node(preorder[pos]);
+        pos += 1;
+        pos = constructBST(preorder, n, pos, curr->left, min, curr->data - 1);
+    }
+    if (pos == n || preorder[pos] < min || preorder[pos] > max)
+        return pos;
+    curr->right = new Node(preorder[pos]);
+    pos += 1;
+    pos = constructBST(preorder, n, pos, curr->right, curr->data + 1, max);
+    return pos;
 }
 Node *preOrderToBST(vector<int> preorder)
 {
-    if (preorder.size() == 0)
+    int n = preorder.size();
+    if (n == 0)
         return NULL;
-
-    int pointer = 0;
-    helper(preorder, &pointer, INT_MIN, INT_MAX);
+    Node *root = new Node(preorder[0]);
+    if (n == 1)
+        return root;
+    constructBST(preorder, n, 1, root, INT_MIN, INT_MAX);
+    return root;
 }
 int main()
 {

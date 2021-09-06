@@ -50,7 +50,7 @@ using namespace std;
 #define FAST                          \
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL);
-//Function to insert a node in a BST.
+//Function to insert a node in a BST. 
 struct Node
 {
     int data;

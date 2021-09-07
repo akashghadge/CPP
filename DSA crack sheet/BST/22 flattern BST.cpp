@@ -82,7 +82,7 @@ void inorder(node *curr, node *&prev)
     inorder(curr->right, prev);
 }
 
-// Function to flatten binary tree using
+// Function to flatten  binary tree using
 // level order traversal
 node *flatten(node *parent)
 {

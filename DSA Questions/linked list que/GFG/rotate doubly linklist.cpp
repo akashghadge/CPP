@@ -13,7 +13,7 @@ Constraints:
 1 <= P <= N
 
 Example:
-Input:
+Input: 
 1
 6 2
 1 2 3 4 5 6

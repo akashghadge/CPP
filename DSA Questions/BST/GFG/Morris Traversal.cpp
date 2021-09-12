@@ -53,7 +53,7 @@ vector<int> morris(Node *root)
             else
             {
                 inPre->right = NULL;
-                curr = curr->right;
+                curr = curr->right; 
             }
         }
     }

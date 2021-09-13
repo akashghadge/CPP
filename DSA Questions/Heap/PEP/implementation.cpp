@@ -14,7 +14,7 @@ private:
     /* data */
     vector<int> heap;
 
-public:
+public: 
     PriorityQueue() {}
     int upHepify(int index)
     {

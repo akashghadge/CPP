@@ -18,7 +18,7 @@ using namespace std;
 
 vector<int> common(int arr1[], int size1, int arr2[], int size2)
 {
-    vector<int> res;
+    vector<int> res; 
     unordered_map<int, int> mp;
     for (int i = 0; i < size1; i++)
     {

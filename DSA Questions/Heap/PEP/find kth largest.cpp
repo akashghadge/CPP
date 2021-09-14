@@ -25,7 +25,7 @@ vector<int> kthLargest(vector<int> &arr, int k)
             kth.push(val);
         }
     }
-    vector<int> res;
+    vector<int> res; 
     while (!kth.empty())
     {
         res.push_back(kth.top());

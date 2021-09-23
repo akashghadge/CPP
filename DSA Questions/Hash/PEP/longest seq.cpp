@@ -52,7 +52,7 @@ void printVector(vector<int> vec)
 int main()
 {
     FAST;
-    vector<int> arr = {10, 5, 9, 1, 11, 8, 6, 15, 3, 12, 2};
+    vector<int> arr = {10, 5, 9, 1, 11, 8, 6, 15, 3, 12, 2} ;
     vector<int> res;
     res = pep(arr);
     printVector(res);

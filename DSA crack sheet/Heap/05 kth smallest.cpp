@@ -63,7 +63,7 @@ public:
             {
                 if (pq.top() > arr[i])
                 {
-                    pq.pop();
+                    pq.pop(); 
                     pq.push(arr[i]);
                 }
             }

@@ -25,9 +25,8 @@ void printVector(vector<int> vec)
     }
     cout << endl;
 }
-class ListData
+struct ListData
 {
-public:
     int index;
     int val;
     int list_num;
@@ -38,36 +37,35 @@ public:
         list_num = num;
     }
 };
-bool operator<(ListData &p1, ListData &p2)
+
+class cmpListData
 {
-    return p1.val < p2.val;
-}
+public:
+    bool operator()(ListData &p1, ListData &p2)
+    {
+        return p1.val < p2.val;
+    }
+};
 vector<int> kSorted(vector<vector<int>> &lists)
 {
     int k = lists.size();
     vector<int> mergedList;
-    priority_queue<ListData *> pq;
+    priority_queue<ListData, vector<ListData>, cmpListData> pq;
     for (int i = 0; i < lists.size(); i++)
     {
         ListData *lnew = new ListData(i, 0, lists[i][0]);
-        pq.push(lnew);
+        pq.push(*lnew);
     }
-    while (!pq.empty())
-    {
-        cout << pq.top()->val << " ";
-        pq.pop();
-    }
-
     while (pq.size() > 0)
     {
-        ListData *l = pq.top();
+        ListData l = pq.top();
         pq.pop();
         // cout << l->val << " ";
-        mergedList.push_back(l->val);
-        l->index++;
-        if (l->index < lists[l->list_num].size())
+        mergedList.push_back(l.val);
+        l.index++;
+        if (l.index < lists[l.list_num].size())
         {
-            l->val = lists[l->list_num][l->index];
+            l.val = lists[l.list_num][l.index];
             pq.push(l);
         }
     }
@@ -91,6 +89,6 @@ int main()
         lists.push_back(list);
     }
     vector<int> sorted = kSorted(lists);
-    // printVector(sorted);
+    printVector(sorted);
     return 0;
 }

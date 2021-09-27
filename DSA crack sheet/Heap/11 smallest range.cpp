@@ -50,9 +50,63 @@ const int N = 100;
 class Solution
 {
 public:
-    pair<int, int> findSmallestRange(int arr[][N], int n, int k)
+    struct ListData
+    {
+        int index;
+        int val;
+        int list_num;
+        ListData(int num, int i, int v)
+        {
+            index = i;
+            val = v;
+            list_num = num;
+        }
+    };
+
+    class cmpListData
+    {
+    public:
+        bool operator()(ListData &p1, ListData &p2)
+        {
+            return p1.val > p2.val;
+        }
+    };
+    pair<int, int> findSmallestRange(int lists[][N], int n, int k)
     {
         //code here
+        vector<int> mergedList;
+        priority_queue<ListData, vector<ListData>, cmpListData> pq;
+        int maxNum = INT_MIN;
+        int minDiff = INT_MAX;
+        for (int i = 0; i < k; i++)
+        {
+            ListData *lnew = new ListData(i, 0, lists[i][0]);
+            maxNum = max(maxNum, lnew->val);
+            pq.push(*lnew);
+        }
+        pair<int, int> ans = {0, 0};
+        while (pq.size() > 0)
+        {
+            ListData l = pq.top();
+            if (minDiff > maxNum - l.val)
+            {
+                minDiff = maxNum - l.val;
+                ans.first = l.val;
+                ans.second = maxNum;
+            }
+            pq.pop();
+            l.index++;
+            if (l.index < n)
+            {
+                l.val = lists[l.list_num][l.index];
+                maxNum = max(l.val, maxNum);
+                pq.push(l);
+            }
+            // break on last or it will get max as last elememtn and min also last so min max so range is 1
+            else
+                break;
+        }
+        return ans;
     }
 };
 int main()

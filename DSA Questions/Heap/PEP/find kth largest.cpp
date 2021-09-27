@@ -56,6 +56,6 @@ int main()
     }
 
     vector<int> res = kthLargest(arr, k);
-    printVector(res);
+    printVector(res); 
     return 0;
 }

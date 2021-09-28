@@ -61,7 +61,7 @@ vector<int> nearlySorted(int arr[], int num, int k)
     while (!pq.empty())
     {
         res[index++] = pq.top();
-        pq.pop();
+        pq.pop(); 
     }
     return res;
 }

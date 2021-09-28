@@ -120,7 +120,7 @@ public:
         string num2 = "";
         while (!pq.empty())
         {
-            if (pq.size())
+            if (pq.size()) 
             {
                 string temp = to_string(pq.top());
                 num1 += (temp);

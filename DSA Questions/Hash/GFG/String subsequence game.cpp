@@ -6,7 +6,7 @@ Example 1:
 
 Input: S = "abc"
 Output: "ab", "ac", "abc" 
-Explanation: "ab", "ac", "abc" are 
+Explanation: "ab", "ac", "abc" are  
 the all possible subsequences which 
 start with vowel and end with consonant.
 Example 2:

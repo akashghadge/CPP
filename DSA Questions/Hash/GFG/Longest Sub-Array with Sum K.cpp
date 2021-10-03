@@ -47,11 +47,19 @@ int lenOfLongSubarr(vector<int> arr, int N, int k)
     // Complete the function
     unordered_map<int, int> mp;
     int sum = 0;
+    int res = 0;
     for (int i = 0; i < N; i++)
     {
         sum += arr[i];
+        if (sum == k)
+            res = i + 1;
+        if (mp.find(sum - k) != mp.end())
+        {
+            res = max(res, i - mp[sum - k]);
+        }
         mp[sum] = i;
     }
+    return res;
 }
 
 int main()

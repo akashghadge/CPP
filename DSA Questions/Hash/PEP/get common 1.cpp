@@ -34,7 +34,7 @@ vector<int> common(int arr1[], int size1, int arr2[], int size2)
         }
     }
     return res;
-}
+} 
 void printVector(vector<int> vec)
 {
     for (int i = 0; i < vec.size(); i++)

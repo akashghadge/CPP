@@ -56,8 +56,8 @@ double fractionalKnapsack(int W, Item arr[], int n)
             cost += (double(W - curr_weight) * items[i].value);
             break;
         }
-        return cost;
     }
+    return cost;
 }
 int main()
 {

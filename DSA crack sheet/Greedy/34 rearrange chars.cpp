@@ -6,7 +6,7 @@
 using namespace std;
 #include <bits/stdc++.h>
 #define en "\n"
-class comp
+struct comp
 {
     bool operator()(pair<char, int> p1, pair<char, int> p2)
     {
@@ -26,16 +26,18 @@ string Arrange(string str)
         pq.push({p.first, p.second});
     }
     string res = "";
+    pair<char, int> prev = make_pair('$', -1);
     while (!pq.empty())
     {
         pair<char, int> p = pq.top();
         pq.pop();
         res += p.first;
         p.second--;
-        if (p.second != 0)
+        if (prev.second > 0)
         {
-            pq.push(p);
+            pq.push(prev);
         }
+        prev = p;
     }
     return res;
 }
@@ -53,7 +55,8 @@ bool isAdjusantSame(string str)
 bool isRearr(string str)
 {
     string res = Arrange(str);
-    return isAdjusantSame(res);
+    // cout<<res<<en;
+    return isAdjusantSame(res) && str.size() == res.size();
 }
 int main()
 {

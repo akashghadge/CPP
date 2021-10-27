@@ -36,6 +36,40 @@ using namespace std;
 // m*n squares
 int minimumCostOfBreaking(int X[], int Y[], int m, int n)
 {
+    sort(X, X + m, greater<int>());
+    sort(Y, Y + n, greater<int>());
+    int h_cuts = 1;
+    int v_cuts = 1;
+    int i = 0, j = 0;
+    int ans = 0;
+    while (i < m && j < n)
+    {
+        if (X[i] > Y[j])
+        {
+            ans += (X[i] * v_cuts);
+            h_cuts++;
+            i++;
+        }
+        else
+        {
+            ans += (Y[j] * h_cuts);
+            v_cuts++;
+            j++;
+        }
+    }
+    while (i < m)
+    {
+        ans += (X[i] * v_cuts);
+        h_cuts++;
+        i++;
+    }
+    while (j < n)
+    {
+        ans += (Y[j] * h_cuts);
+        v_cuts++;
+        j++;
+    }
+    return ans;
 }
 
 // Driver code to test above methods

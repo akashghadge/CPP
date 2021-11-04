@@ -85,7 +85,7 @@ void pepCoding(string str, int index, string ans, int c)
         pepCoding(str, index + 1, ans + to_string(c) + str[index], 0);
 }
 
-int main()
+int main() 
 {
     FAST;
     string str;

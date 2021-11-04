@@ -62,4 +62,4 @@ int main()
     sol(row, col, N);
     cout << countAns << en;
     return 0;
-}
+} 

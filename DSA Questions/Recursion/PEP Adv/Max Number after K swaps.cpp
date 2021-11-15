@@ -13,7 +13,7 @@ using namespace std;
 #define FAST                          \
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL);
-int max_ans = INT_MIN;
+int max_ans = INT_MIN; 
 int parseINT(string num)
 {
     int mult = 1;

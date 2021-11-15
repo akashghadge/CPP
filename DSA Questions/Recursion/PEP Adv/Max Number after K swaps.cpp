@@ -13,7 +13,7 @@ using namespace std;
 #define FAST                          \
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL);
-int max_ans = INT_MIN; 
+int max_ans = INT_MIN;
 int parseINT(string num)
 {
     int mult = 1;
@@ -21,6 +21,7 @@ int parseINT(string num)
     for (int i = num.size() - 1; i >= 0; i--)
     {
         ans += (mult * (num[i] - '0'));
+        mult *= 10;
     }
     return ans;
 }

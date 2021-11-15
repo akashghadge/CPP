@@ -13,7 +13,7 @@ bool isCube(int N)
     while (start <= end)
     {
         int mid = (start + end) / 2;
-
+ 
         if (mid * mid * mid == N)
         {
             return true;

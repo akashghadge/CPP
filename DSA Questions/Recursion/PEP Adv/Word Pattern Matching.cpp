@@ -27,9 +27,6 @@ using namespace std;
 #define FAST                          \
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL);
-bool validMapping(string pattern, unordered_map<char, string> &mp, string word)
-{
-}
 void print(unordered_map<char, string> mp)
 {
     for (auto val : mp)

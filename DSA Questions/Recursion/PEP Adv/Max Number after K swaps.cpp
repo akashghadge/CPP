@@ -13,46 +13,53 @@ using namespace std;
 #define FAST                          \
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL);
-int max_ans = INT_MIN;
-int parseINT(string num)
+void swap(string &str, int c, int j)
 {
-    int mult = 1;
-    int ans = 0;
-    for (int i = num.size() - 1; i >= 0; i--)
-    {
-        ans += (mult * (num[i] - '0'));
-        mult *= 10;
-    }
-    return ans;
+    char m = str[c];
+    str[c] = str[j];
+    str[j] = m;
 }
-void sol(string num, int k)
+void findMax(string str, int k, int c, string &max)
 {
-    int curr_ans = parseINT(num);
-    max_ans = max(curr_ans, max_ans);
-    if (k == 0)
-    {
+    if (c == str.size() - 1 or k <= 0)
         return;
-    }
-    for (int i = 0; i < num.size(); i++)
+    char m = str[c];
+    for (int i = c + 1; i < str.size(); i++)
     {
-        for (int j = i + 1; j < num.size(); j++)
+        if (str[i] >= m)
+            m = str[i];
+    }
+    if (str[c] == m)
+    {
+        findMax(str, k, c + 1, max);
+    }
+    else
+    {
+        for (int i = c + 1; i < str.size(); i++)
         {
-            string temp = num;
-            if (temp[i] - '0' < temp[j] - '0')
+            if (str[i] == m)
             {
-                swap(temp[i], temp[j]);
-                sol(temp, k - 1);
+                swap(str, i, c);
+                if (str >= max)
+                    max = str;
+                findMax(str, k - 1, c + 1, max);
+                swap(str, i, c);
             }
         }
     }
 }
+string findMaximumNum(string str, int k)
+{
+    string m = str;
+    findMax(str, k, 0, m);
+    return m;
+}
+
 int main()
 {
     FAST;
     string num;
     int k;
     cin >> num >> k;
-    sol(num, k);
-    cout << max_ans << en;
     return 0;
 }

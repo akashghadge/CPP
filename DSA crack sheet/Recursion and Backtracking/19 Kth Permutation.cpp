@@ -116,7 +116,7 @@ string findKthPermutation(int n, int k)
 
 // Driver code
 int main()
-{
+{ 
 
     int n = 3, k = 4;
 

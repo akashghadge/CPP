@@ -124,5 +124,5 @@ int main()
 
     cout << kth_perm_seq << endl;
 
-    return 0;
+    return 0; 
 }

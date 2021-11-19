@@ -28,6 +28,7 @@ Below is the C++ implementation of the above idea –
 using namespace std;
 #define R 3
 #define C 10
+// my code not gfg
 void util(int mat[R][C], int row, int col, int dr, int dc, string ans, vector<string> &final_ans, vector<vector<bool>> visited)
 {
     if (row < 0 || col < 0 || row == R || col == C || visited[row][col] || mat[row][col] == 0)

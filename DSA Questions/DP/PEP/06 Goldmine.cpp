@@ -51,6 +51,36 @@ int gold(vector<vi> &mine)
     }
     return ans;
 }
+
+// gfg clean code
+int maxGold(int n, int m, vector<vector<int>> M)
+{
+    int dp[n][m];
+    for (int i = 0; i < n; i++)
+        dp[i][m - 1] = M[i][m - 1];
+
+    for (int j = m - 2; j >= 0; j--)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            int temp = 0;
+            dp[i][j] = M[i][j];
+            if (i - 1 >= 0)
+                temp = max(dp[i - 1][j + 1], temp);
+            if (i + 1 < n)
+                temp = max(dp[i + 1][j + 1], temp);
+            temp = max(dp[i][j + 1], temp);
+            dp[i][j] += temp;
+        }
+    }
+
+    int ans = 0;
+    for (int i = 0; i < n; i++)
+    {
+        ans = max(dp[i][0], ans);
+    }
+    return ans;
+}
 int main()
 {
     FAST;

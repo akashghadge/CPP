@@ -75,5 +75,9 @@
         "typeinfo": "cpp",
         "variant": "cpp",
         "stdlib.h": "c"
+    },
+    "files.exclude": {
+        "**/*.exe": true
     }
+    
 }

@@ -26,8 +26,8 @@ int sol(vi prices, int k)
     int n = prices.size();
     if (n == 1)
         return 0;
-    vii dp(n, vi(k + 1));
-    for (int transaction = 1; transaction < k; transaction++)
+    vii dp(k + 1, vi(n));
+    for (int transaction = 1; transaction <= k; transaction++)
     {
         int max_profit_one_less = INT_MIN;
         for (int day = 1; day < n; day++)
@@ -36,6 +36,7 @@ int sol(vi prices, int k)
             dp[transaction][day] = max(dp[transaction][day - 1], max_profit_one_less + prices[day]);
         }
     }
+    return dp[k][n - 1];
 }
 int main()
 {

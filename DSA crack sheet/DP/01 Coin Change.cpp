@@ -48,7 +48,7 @@ using namespace std;
 long long int count(int coins[], int n, int k)
 {
     // code here.
-    // int n = coins.size();
+    // int n = coins.size(); git
     vector<long long> dp(k + 1);
     dp[0] = 1;
     for (int i = 0; i < n; i++)

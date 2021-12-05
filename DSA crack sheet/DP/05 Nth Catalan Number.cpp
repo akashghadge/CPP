@@ -25,7 +25,7 @@ int findCatalan(int n)
     return manade[n];
 }
 int main()
-{
+{ 
     FAST;
     return 0;
 }

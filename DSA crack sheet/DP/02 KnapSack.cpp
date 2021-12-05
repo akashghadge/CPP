@@ -43,8 +43,6 @@ using namespace std;
 #define FAST                          \
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL);
-
-public:
 //Function to return max value that can be put in knapsack of capacity W.
 int knapSack(int capicity, int weight[], int price[], int n)
 {

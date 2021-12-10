@@ -32,7 +32,7 @@ int non_overlapping(vector<Bridge *> bridges, int n)
          [](Bridge *b1, Bridge *b2)
          {
              if (b1->top == b2->top)
-                 return b1->down < b1->down;
+                 return b1->down < b2->down;
              return b1->top < b2->top;
          });
 

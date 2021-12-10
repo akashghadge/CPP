@@ -78,6 +78,9 @@
     },
     "files.exclude": {
         "**/*.exe": true
-    }
+    },
+    "cSpell.words": [
+        "bitonic"
+    ]
     
 }

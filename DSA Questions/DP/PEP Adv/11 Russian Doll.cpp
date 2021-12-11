@@ -45,8 +45,8 @@ int russian_doll(vector<Envelope *> envelopes, int n)
          [](Envelope *e1, Envelope *e2)
          {
              if (e1->height == e2->height)
-                 return e1->width > e2->width;
-             return e1->height > e2->height;
+                 return e1->width < e2->width;
+             return e1->height < e2->height;
          });
     vi lis(n);
     for (int i = 0; i < n; i++)

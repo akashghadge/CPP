@@ -1,3 +1,6 @@
+/*
+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
+*/
 #include <bits/stdc++.h>
 using namespace std;
 #define en "\n"
@@ -13,7 +16,7 @@ bool isCube(int N)
     while (start <= end)
     {
         int mid = (start + end) / 2;
- 
+
         if (mid * mid * mid == N)
         {
             return true;

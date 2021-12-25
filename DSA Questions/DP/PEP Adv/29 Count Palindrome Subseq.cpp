@@ -1,14 +1,9 @@
 /*
-here we have the string str find longest palindroming subsequence size
+string aabbaa
+find count of subseq which are palindrome
 
-aabbcc
-6
 */
-/*
-here we have two strings 
-a and b
-find the longest common subsequence between them
-*/
+
 #include <bits/stdc++.h>
 using namespace std;
 #define en "\n"
@@ -19,10 +14,23 @@ using namespace std;
 #define FAST                          \
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL);
-int longest_palindrome_sub(string str)
+template <class printVal>
+void printVector(vector<printVal> vec)
+{
+    for (int i = 0; i < vec.size(); i++)
+    {
+        for (auto val : vec[i])
+        {
+            cout << val << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
+int count_palindrom_sub(string str)
 {
     int n = str.size();
-    vii dp(n, vi(n));
+    vii dp(n, vi(n, 0));
     for (int gap = 0; gap < n; gap++)
     {
         for (int i = 0, j = gap; j < n; i++, j++)
@@ -33,14 +41,15 @@ int longest_palindrome_sub(string str)
             }
             else if (str[i] == str[j])
             {
-                dp[i][j] = dp[i + 1][j - 1] + 2;
+                dp[i][j] = dp[i + 1][j] + dp[i][j - 1] + 1;
             }
             else
             {
-                dp[i][j] = max(dp[i + 1][j], dp[i][j - 1]);
+                dp[i][j] = dp[i + 1][j] + dp[i][j - 1] - dp[i + 1][j - 1];
             }
         }
     }
+    printVector(dp);
     return dp[0][n - 1];
 }
 int main()
@@ -48,6 +57,6 @@ int main()
     FAST;
     string str;
     cin >> str;
-    cout << longest_palindrome_sub(str) << en;
+    cout << count_palindrom_sub(str) << en;
     return 0;
 }

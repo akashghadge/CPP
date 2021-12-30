@@ -29,7 +29,13 @@ bool match(string word, string pat)
             else if (i == m)
                 dp[i][j] = false;
             else if (j == n)
-                dp[i][j] = false;
+            {
+                char ch_pat = pat[i];
+                if (ch_pat == '*')
+                    dp[i][j] = dp[i + 1][j];
+                else
+                    dp[i][j] = false;
+            }
             else
             {
                 char ch_pat = pat[i];
@@ -42,7 +48,7 @@ bool match(string word, string pat)
                 {
                     // we can optimise this loop
                     dp[i][j] = dp[i + 1][j];
-                    for (int ptr = 1; ptr <= n; ptr++)
+                    for (int ptr = 1; j + ptr <= n; ptr++)
                     {
                         dp[i][j] = dp[i][j] or dp[i + 1][j + ptr];
                     }
@@ -76,7 +82,13 @@ bool matchOptimise(string word, string pat)
             else if (i == m)
                 dp[i][j] = false;
             else if (j == n)
-                dp[i][j] = false;
+            {
+                char ch_pat = pat[i];
+                if (ch_pat == '*')
+                    dp[i][j] = dp[i + 1][j];
+                else
+                    dp[i][j] = false;
+            }
             else
             {
                 char ch_pat = pat[i];

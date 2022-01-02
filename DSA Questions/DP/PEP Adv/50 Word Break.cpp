@@ -46,5 +46,5 @@ int main()
     cin >> str;
     cout << solution(str, mp) << en;
 
-    return 0;
+    return 0; 
 }

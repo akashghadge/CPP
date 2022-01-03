@@ -19,7 +19,8 @@ int matrix_mult(vi arr, int n)
             dp[si][ei] = INT_MAX;
             for (int i = si + 1; i < ei; i++)
             {
-                dp[si][ei] = min(dp[si][ei], dp[si][i] + dp[i][ei] + (arr[si] * arr[i] * arr[ei]));
+                dp[si][ei] = min(dp[si][ei],
+                                 dp[si][i] + dp[i][ei] + (arr[si] * arr[i] * arr[ei]));
             }
             si++;
             ei++;

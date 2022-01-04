@@ -26,6 +26,6 @@ int findCatalan(int n)
 }
 int main()
 { 
-    FAST; 
+    FAST;  
     return 0;
 }

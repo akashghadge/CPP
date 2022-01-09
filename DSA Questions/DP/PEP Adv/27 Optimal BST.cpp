@@ -37,8 +37,6 @@ int optimal_bst(vi freq, int n)
                 int curr_addition = prefix_sum[j] - ((i == 0) ? 0 : prefix_sum[i]);
                 for (int k = i; k <= j; k++)
                 {
-                    cout << "Error " << gap << " "
-                         << " " << i << " " << j << " " << k << en;
                     int left_part = (k == i) ? 0 : dp[i][k - 1];
                     int right_part = (k == j) ? 0 : dp[k - 1][j];
                     min_value = min(min_value, left_part + right_part + curr_addition);

@@ -190,5 +190,5 @@ int main()
                                  {1, 0, 0, 1}};
     int row = 4, col = 4;
     maxAreaRectWithSumZero(mat, row, col);
-    return 0;
+    return 0; 
 }

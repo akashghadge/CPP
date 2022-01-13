@@ -60,7 +60,7 @@ int findLongestChain(vector<vector<int>> &pairs)
 }
 int main()
 {
-    FAST;
+    FAST; 
 
     return 0;
 }

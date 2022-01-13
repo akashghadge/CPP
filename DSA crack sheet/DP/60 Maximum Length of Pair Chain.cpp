@@ -51,7 +51,7 @@ int findLongestChain(vector<vector<int>> &pairs)
         for (int j = i - 1; j >= 0; j--)
         {
             if (pairs[j][1] < pairs[i][0])
-                max_sub_till_now = max(max_sub_till_now, dp[j]);
+                max_sub_till_now = max(max_sub_till_now, dp[j]); 
         }
         dp[i] = max_sub_till_now + 1;
     }

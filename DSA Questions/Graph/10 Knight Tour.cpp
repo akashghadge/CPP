@@ -94,7 +94,7 @@ void helper(vector<vector<int>> &board, int row, int col, int N, int move)
     if (move == board.size() * board.size())
     {
         board[row][col] = move;
-        // printVector(board);
+        printVector(board);
         countAns++;
         board[row][col] = 0;
         return;
@@ -121,7 +121,11 @@ void sol(int row, int col, int N)
 }
 int main()
 {
-    // FAST;
+// FAST;
+#ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+#endif
     int N;
     cin >> N;
     int row, col;

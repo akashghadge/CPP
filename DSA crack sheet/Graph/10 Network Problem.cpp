@@ -40,3 +40,78 @@ Submissions
 110,661
 
 */
+
+#include <bits/stdc++.h>
+using namespace std;
+#define en "\n"
+#define ll long long
+#define v vector
+#define vi vector<int>
+#define vll vector<ll>
+#define vii vector<vector<int>>
+#define pii pair<int, int>
+#define vpi vector<pair<int, int>>
+#define FAST                          \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(NULL);
+class Solution
+{
+public:
+    void dfs(int src, vector<vector<int>> &graph, vector<int> &visited)
+    {
+        if (visited[src])
+            return;
+        visited[src] = true;
+        for (auto nbr : graph[src])
+        {
+            if (visited[nbr])
+                continue;
+            dfs(nbr, graph, visited);
+        }
+    }
+    int sol(vector<vector<int>> &connections, int computers)
+    {
+        // graph is not possible
+        if (connections.size() < computers - 1)
+            return -1;
+
+        // making of the graph
+        vector<vector<int>> graph(computers);
+        for (int i = 0; i < connections.size(); i++)
+        {
+            graph[connections[i][0]].push_back(connections[i][1]);
+            graph[connections[i][1]].push_back(connections[i][0]);
+        }
+
+        // connected components
+        vector<int> visited(computers);
+        int comp = 0;
+        for (int i = 0; i < computers; i++)
+        {
+            if (visited[i])
+                continue;
+            dfs(i, graph, visited);
+            comp++;
+        }
+        return comp - 1;
+    }
+};
+int main()
+{
+#ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+#endif
+    FAST;
+    int vtx, e;
+    cin >> vtx >> e;
+    vii edge(e, vi(2));
+    for (int i = 0; i < e; i++)
+    {
+        cin >> edge[i][0] >> edge[i][1];
+    }
+    Solution *s = new Solution();
+    cout << s->sol(edge, vtx) << en;
+
+    return 0;
+}

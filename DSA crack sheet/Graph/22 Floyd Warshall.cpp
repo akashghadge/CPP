@@ -11,6 +11,29 @@ using namespace std;
 #define FAST                          \
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL);
+class Solution
+{
+public:
+    void shortest_distance(vector<vector<int>> &m)
+    {
+        int n = m.size();
+        for (int k = 0; k < n; k++)
+        {
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if (m[i][k] == -1 || m[k][j] == -1)
+                        continue;
+                    if (m[i][j] == -1)
+                        m[i][j] = m[i][k] + m[k][j];
+                    else
+                        m[i][j] = min(m[i][j], m[i][k] + m[k][j]);
+                }
+            }
+        }
+    }
+};
 
 vector<vector<int>> floyd_warshal(vector<vector<pair<int, int>>> graph, int vertex)
 {

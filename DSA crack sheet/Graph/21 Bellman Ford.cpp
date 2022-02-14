@@ -34,26 +34,80 @@ Constraints:
 Vi
 */
 
+// { Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
-#define en "\n"
-#define ll long long
-#define v vector
-#define vi vector<int>
-#define vll vector<ll>
-#define vii vector<vector<int>>
-#define pii pair<int, int>
-#define vpi vector<pair<int, int>>
-#define FAST                          \
-    ios_base::sync_with_stdio(false); \
-    cin.tie(NULL);
+
+// } Driver Code Ends
+class Solution
+{
+public:
+    class Node
+    {
+    public:
+        int u, v, wt;
+        Node(int ui, int vi, int wti)
+        {
+            u = ui;
+            v = vi;
+            wt = wti;
+        }
+    };
+    int isNegativeWeightCycle(int n, vector<vector<int>> edges)
+    {
+        // Code here
+        vector<Node> nodes;
+        for (auto curr : edges)
+        {
+            nodes.push_back(Node(curr[0], curr[1], curr[2]));
+        }
+        int src = 0;
+        int inf = 10000000;
+        vector<int> dist(n, inf);
+        dist[src] = 0;
+        for (int i = 0; i < n - 1; i++)
+        {
+            for (auto it : nodes)
+            {
+                if (dist[it.u] + it.wt < dist[it.v])
+                {
+                    dist[it.v] = dist[it.u] + it.wt;
+                }
+            }
+        }
+        for (int i = 0; i < n - 1; i++)
+        {
+            for (auto it : nodes)
+            {
+                if (dist[it.u] + it.wt < dist[it.v])
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+};
+
+// { Driver Code Starts.
 int main()
 {
-#ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
-    FAST;
-
+    int tc;
+    cin >> tc;
+    while (tc--)
+    {
+        int n, m;
+        cin >> n >> m;
+        vector<vector<int>> edges;
+        for (int i = 0; i < m; i++)
+        {
+            int x, y, z;
+            cin >> x >> y >> z;
+            edges.push_back({x, y, z});
+        }
+        Solution obj;
+        int ans = obj.isNegativeWeightCycle(n, edges);
+        cout << ans << "\n";
+    }
     return 0;
-}
+} // } Driver Code Ends

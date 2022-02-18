@@ -11,6 +11,66 @@ using namespace std;
 #define FAST                          \
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL);
+class Solution
+{
+public:
+    void topo(int node, vector<int> adj[], stack<int> &s, vector<int> &visited)
+    {
+        visited[node] = 1;
+        for (auto it : adj[node])
+        {
+            if (visited[it] == 0)
+                topo(it, adj, s, visited);
+        }
+
+        s.push(node);
+    }
+    void dfs(int node, vector<int> transpose[], vector<int> &visited)
+    {
+        visited[node] = 1;
+        for (auto it : transpose[node])
+        {
+            if (visited[it] == 0)
+                dfs(it, transpose, visited);
+        }
+    }
+    int kosaraju(int V, vector<int> adj[])
+    {
+        // code here
+
+        vector<int> visited(V, 0);
+
+        stack<int> s;
+        for (int i = 0; i < V; i++)
+        {
+            if (visited[i] == 0)
+                topo(i, adj, s, visited);
+        }
+        vector<int> transpose[V];
+        for (int i = 0; i < V; i++)
+        {
+            visited[i] = 0;
+            for (auto it : adj[i])
+            {
+                transpose[it].push_back(i);
+            }
+        }
+
+        int c = 0;
+        while (!s.empty())
+        {
+
+            int node = s.top();
+            s.pop();
+            if (visited[node] == 0)
+            {
+                c++;
+                dfs(node, transpose, visited);
+            }
+        }
+        return c;
+    }
+};
 vii reverse_graph(vi adj[], int V)
 {
     vii res(V);

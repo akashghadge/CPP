@@ -50,8 +50,43 @@ class Solution
 public:
     int ladderLength(string beginWord, string endWord, vector<string> &wordList)
     {
+        unordered_set<string> list(wordList.begin(), wordList.end());
+        if (list.find(endWord) == list.end())
+            return 0;
+
+        unordered_map<string, int> distance;
+        for (auto str : wordList)
+            distance[str] = INT_MAX;
+
+        queue<string> Q;
+        Q.push(beginWord);
+        distance[beginWord] = 0;
+
+        while (!Q.empty())
+        {
+            string u = Q.front();
+            Q.pop();
+
+            for (int j = 0; j < u.size(); j++)
+            {
+                for (char k = 'a'; k <= 'z'; k++)
+                {
+                    string v = u;
+                    v[j] = k;
+                    if (list.find(v) != list.end() && distance[v] == INT_MAX)
+                    {
+                        Q.push(v);
+                        distance[v] = distance[u] + 1;
+                        if (v == endWord)
+                            return distance[v] + 1;
+                    }
+                }
+            }
+        }
+        return 0;
     }
 };
+
 int main()
 {
 #ifndef ONLINE_JUDGE

@@ -1,70 +1,116 @@
+/*
+Oliver and Bob are best friends. They have spent their entire childhood in the beautiful city of Byteland. The people of Byteland live happily along with the King.
+The city has a unique architecture with total N houses. The King's Mansion is a very big and beautiful bungalow having address = 1. Rest of the houses in Byteland have some unique address, (say A), are connected by roads and there is always a unique path between any two houses in the city. Note that the King's Mansion is also included in these houses.
+
+Oliver and Bob have decided to play Hide and Seek taking the entire city as their arena. In the given scenario of the game, it's Oliver's turn to hide and Bob is supposed to find him.
+Oliver can hide in any of the houses in the city including the King's Mansion. As Bob is a very lazy person, for finding Oliver, he either goes towards the King's Mansion (he stops when he reaches there), or he moves away from the Mansion in any possible path till the last house on that path.
+
+Oliver runs and hides in some house (say X) and Bob is starting the game from his house (say Y). If Bob reaches house X, then he surely finds Oliver.
+
+Given Q queries, you need to tell Bob if it is possible for him to find Oliver or not.
+
+The queries can be of the following two types:
+0 X Y : Bob moves towards the King's Mansion.
+1 X Y : Bob moves away from the King's Mansion
+
+INPUT :
+The first line of the input contains a single integer N, total number of houses in the city. Next N-1 lines contain two space separated integers A and B denoting a road between the houses at address A and B.
+Next line contains a single integer Q denoting the number of queries.
+Following Q lines contain three space separated integers representing each query as explained above.
+
+OUTPUT :
+Print "YES" or "NO" for each query depending on the answer to that query.
+
+CONSTRAINTS :
+1 ≤ N ≤ 10^5
+1 ≤ A,B ≤ N
+1 ≤ Q ≤ 5*10^5
+1 ≤ X,Y ≤ N
+
+NOTE :
+Large Input size. Use printf scanf or other fast I/O methods.
+
+Sample Input
+9
+1 2
+1 3
+2 6
+2 7
+6 9
+7 8
+3 4
+3 5
+5
+0 2 8
+1 2 8
+1 6 5
+0 6 5
+1 9 1
+Sample Output
+YES
+NO
+NO
+NO
+YES
+Time Limit: 1
+Memory Limit: 256
+Source Limit:
+Explanation
+Query 1 Bob goes from 8 towards 1 meeting 2 in the path. Query 2 Bob goes from 8 away from 1 and never meets 2. Query 3 Bob goes from 5 away from 1 and never meets 6. Query 4 Bob goes from 5 towards 1 and never meets 6. Query 5 Bob goes from 1 away from 1 and meets finds Oliver at 9. he can take the following two paths 1 -> 2 -> 6 -> 9 OR 1 -> 2 -> 7 -> 8 9 appears in atleast one of them
+
+
+*/
 #include <bits/stdc++.h>
+
 using namespace std;
-#define en "\n"
-#define ll long long
-#define v vector
-#define vi vector<int>
-#define vll vector<ll>
-#define vii vector<vector<int>>
-#define pii pair<int, int>
-#define vpi vector<pair<int, int>>
-#define FAST                          \
-    ios_base::sync_with_stdio(false); \
-    cin.tie(NULL);
-vector<vector<vector<int>>> ans(2, vii(100006, vi(100006, -1)));
-bool dfs(vii &graph, int src, int dest, int par)
+
+#define MOD 1000000007
+#define ll long long int
+#define ld long double
+#define pb push_back
+#define mkp make_pair
+
+vector<int> v[100001];
+int tim;
+int ta[100001], td[100001];
+
+void dfs(int x)
 {
-    if (src == dest)
-        return true;
-    bool flag = false;
-    for (auto child : graph[src])
+    tim++;
+    ta[x] = tim;
+    for (int i = 0; i < v[x].size(); ++i)
     {
-        flag = flag || dfs(graph, child, dest, src);
+        if (!ta[v[x][i]])
+        {
+            dfs(v[x][i]);
+            tim++;
+        }
     }
-    return flag;
+    tim++;
+    td[x] = tim;
 }
-bool sol(vii &graph, int type, int x, int y)
-{
-    if (type == 0)
-    {
-        if (ans[type][x][y] != -1)
-            return ans[type][x][y];
-        ans[type][x][y] = dfs(graph, x, y, -1);
-        return ans[type][x][y];
-    }
-    else
-    {
-        if (ans[type][y][x] != -1)
-            return ans[type][y][x];
-        ans[type][y][x] = dfs(graph, y, x, -1);
-        return ans[type][y][x];
-    }
-}
+
 int main()
 {
-#ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
-    FAST;
-    int n;
+    int n, m, i, j, k, a, b, c, x, y;
     cin >> n;
-    vector<vector<int>> graph(n);
-    for (int i = 0; i < n - 1; i++)
+    for (i = 1; i < n; ++i)
     {
-        int u, t;
-        cin >> u >> t;
-        graph[u - 1].push_back(t - 1);
+        scanf("%d %d", &x, &y);
+        v[x].pb(y);
+        v[y].pb(x);
     }
-
-    int q;
-    cin >> q;
-    for (int i = 0; i < q; i++)
+    dfs(1);
+    cin >> m;
+    while (m--)
     {
-        int type, x, y;
-        cin >> type >> x >> y;
-        sol(graph, type, x - 1, y - 1) ? cout << "YES" : cout << "NO";
-        cout << en;
+        scanf("%d %d %d", &a, &b, &c);
+        if (a == 1)
+            swap(c, b);
+        if (ta[b] <= ta[c] && td[c] <= td[b])
+            printf("YES\n");
+        else
+            printf("NO\n");
     }
 
     return 0;

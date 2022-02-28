@@ -130,4 +130,3 @@ int main()
     canBeDividedinTwoCliques(G) ? cout << "Yes" : cout << "No";
     return 0;
 }
- 

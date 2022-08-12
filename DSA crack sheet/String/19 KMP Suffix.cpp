@@ -5,14 +5,14 @@ Example 1:
 
 Input: s = "abab"
 Output: 2
-Explanation: "ab" is the longest proper 
-prefix and suffix. 
+Explanation: "ab" is the longest proper
+prefix and suffix.
 Example 2:
 
 Input: s = "aaaa"
 Output: 3
-Explanation: "aaa" is the longest proper 
-prefix and suffix. 
+Explanation: "aaa" is the longest proper
+prefix and suffix.
 Your task:
 You do not need to read any input or print anything. The task is to complete the function lps(), which takes a string as input and returns an integer.
 
@@ -33,7 +33,7 @@ using namespace std;
 void printVector(vector<int> vec)
 {
     for (int i = 0; i < vec.size(); i++)
-    { 
+    {
         cout << "At Index " << i << " Vector have : " << vec[i] << endl;
     }
     cout << endl;

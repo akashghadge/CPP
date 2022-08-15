@@ -168,7 +168,7 @@ void space_tab()
     prn(a);
 }
 void sol()
-{
+{ 
     var(n);
     vi dp(n + 1);
     dp[0] = dp[1] = 1;

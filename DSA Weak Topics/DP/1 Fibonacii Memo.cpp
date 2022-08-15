@@ -144,9 +144,22 @@ void prnv(auto b, auto e)
     }
     cout << endl;
 }
-
+ll solve(int n, vi &dp)
+{
+    if (n == 0 or n == 1)
+        return 1;
+    if (dp[n] != -1)
+        return dp[n];
+    ll ans = solve(n - 1, dp) + solve(n - 2, dp);
+    dp[n] = ans;
+    return ans;
+}
 void sol()
 {
+    var(n);
+    vi dp(n + 1, -1);
+    cout << solve(n, dp) << en;
+    prnv(dp.begin(), dp.end());
 }
 
 int main()

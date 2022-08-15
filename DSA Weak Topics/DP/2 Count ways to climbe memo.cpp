@@ -144,41 +144,26 @@ void prnv(auto b, auto e)
     }
     cout << endl;
 }
-void tab()
+/*
+here we have input n stairs and return
+number of distinct ways to climb if jumps of 1 and 2 allowed
+*/
+int solve(int n, vi &dp)
 {
-    var(n);
-    vi dp(n + 1);
-    dp[0] = dp[1] = 1;
-    for (int i = 2; i <= n; i++)
-    {
-        dp[i] = dp[i - 2] + dp[i - 1];
-    }
-    prn(dp[n]);
-}
-void space_tab()
-{
-    var(n);
-    int a = 0, b = 1, c = 1;
-    for (int i = 2; i <= n; i++)
-    {
-        a = b + c;
-        c = b;
-        b = a;
-    }
-    prn(a);
+    if (n == 0 || n == 1)
+        return 1;
+    if (dp[n] != -1)
+        return dp[n];
+    int ans = solve(n - 1, dp) + solve(n - 2, dp);
+    dp[n] = ans;
+    return ans;
 }
 void sol()
 {
     var(n);
-    vi dp(n + 1);
-    dp[0] = dp[1] = 1;
-    for (int i = 2; i <= n; i++)
-    {
-        dp[i] = dp[i - 2] + dp[i - 1];
-    }
-    prn(dp[n]);
-    tab();
-    space_tab();
+    vi dp(n + 1, -1);
+    int ans = solve(n, dp);
+    prn(ans);
 }
 
 int main()

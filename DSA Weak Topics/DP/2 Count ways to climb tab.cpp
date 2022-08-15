@@ -144,6 +144,10 @@ void prnv(auto b, auto e)
     }
     cout << endl;
 }
+/*
+here we have input n stairs and return
+number of distinct ways to climb if jumps of 1 and 2 allowed
+*/
 void tab()
 {
     var(n);

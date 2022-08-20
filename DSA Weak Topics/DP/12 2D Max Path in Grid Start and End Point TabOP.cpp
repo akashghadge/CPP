@@ -150,16 +150,36 @@ void prnv(auto b, auto e)
     cout << endl;
 }
 
+int solve(vvi &arr, int n, int m)
+{
+    vi dp(m);
+    dp = arr[0];
+
+    for (int i = 1; i < n; i++)
+    {
+        vi curr(m);
+        for (int j = 0; j < m; j++)
+        {
+            int up = dp[j];
+            int left = INT_MIN;
+            int right = INT_MIN;
+            if (j >= 1)
+                left = dp[j - 1];
+            if (j < m - 1)
+                right = dp[j + 1];
+            curr[j] = max(up, max(left, right)) + arr[i][j];
+        }
+        dp = curr;
+    }
+    return *max_element(all(dp));
+}
 void sol()
 {
     var2(n, m);
     varvvi(arr, n, m);
-    int ans = INT_MIN;
-    for (int i = 0; i < m; i++)
-    {
-    }
+    int ans = solve(arr, n, m);
+    prn(ans);
 }
-
 int main()
 {
 #ifndef ONLINE_JUDGE
@@ -168,7 +188,7 @@ int main()
 #endif
     FAST();
     ll TEST_CASE = 1;
-    // cin >> TEST_CASE;
+    cin >> TEST_CASE;
     forn(_, 0, TEST_CASE)
     {
         sol();

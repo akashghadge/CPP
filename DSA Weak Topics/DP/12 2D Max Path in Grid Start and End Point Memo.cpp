@@ -165,7 +165,7 @@ int solve(vvi &arr, int n, int m, int r, int c, vvi &dp)
     return dp[r][c] = max(max(left, right), up) + arr[r][c];
 }
 void sol()
-{
+{ 
     var2(n, m);
     varvvi(arr, n, m);
     int ans = INT_MIN;

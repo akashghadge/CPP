@@ -132,4 +132,4 @@ int main()
     int occ = solOcc(arr, target);
     cout << occ << en;
     return 0;
-}
+} 

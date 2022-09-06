@@ -153,22 +153,30 @@ void prnv(auto b, auto e)
 /*
 Anywhere if counting is involves then you must return 1 in base case and then sum up all the
 stuffs
-Q: You have array and k return number of sub sequences which have sum equal to k
+Q: here we have array and target diff. so we need to make two s1 and s2 subset such that s1-s2=target diff
+therefor we can formulate that thing
+i.c s1=(total_sum-target_diff)/2
+and here no fraction considered so total_sum - target_diff must be even
 */
-
 /*
-this code cant handle cases such as the 0,0,1
-here it will return the answer as the 1
+here we solved the case of 0 0 1
+this case come due to the we are return if sum==0 and not going for last index(0)
+there for we remove the case of k==0 return 1;
+and try to go deeper into the recursion tree and return appropiate values
 */
 
 int solve(int id, int k, vi &arr, vvi &dp)
 {
     if (k < 0)
         return 0;
-    if (k == 0)
-        return 1;
     if (id == 0)
-        return (arr[id] == k);
+    {
+        if (k == 0 and arr[0] == 0)
+            return 2;
+        if (k == 0 or arr[0] == 0)
+            return 1;
+        return 0;
+    }
     if (dp[id][k] != -1)
         return dp[id][k];
     int pick = solve(id - 1, k - arr[id], arr, dp);
@@ -177,8 +185,15 @@ int solve(int id, int k, vi &arr, vvi &dp)
 }
 void sol()
 {
-    var2(n, k);
+    var2(n, diff);
     varv(arr, n);
+    int k = accumulate(all(arr), 0) - diff;
+    if (k % 2 != 0)
+    {
+        prn(0);
+        return;
+    }
+    k /= 2;
     vvi dp(n, vi(k + 1, -1));
     int ans = solve(n - 1, k, arr, dp);
     prn(ans);

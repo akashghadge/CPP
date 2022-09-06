@@ -153,34 +153,62 @@ void prnv(auto b, auto e)
 /*
 Anywhere if counting is involves then you must return 1 in base case and then sum up all the
 stuffs
-Q: You have array and k return number of sub sequences which have sum equal to k
+Q: here we have array and target diff. so we need to make two s1 and s2 subset such that s1-s2=target diff
+therefor we can formulate that thing
+i.c s1=(total_sum-target_diff)/2
+and here no fraction considered so total_sum - target_diff must be even
 */
-
 /*
-this code cant handle cases such as the 0,0,1
-here it will return the answer as the 1
+here we solved the case of 0 0 1
+this case come due to the we are return if sum==0 and not going for last index(0)
+there for we remove the case of k==0 return 1;
+and try to go deeper into the recursion tree and return appropiate values
 */
 
-int solve(int id, int k, vi &arr, vvi &dp)
+int solve(int id, int k, vi &arr)
 {
-    if (k < 0)
-        return 0;
-    if (k == 0)
-        return 1;
-    if (id == 0)
-        return (arr[id] == k);
-    if (dp[id][k] != -1)
-        return dp[id][k];
-    int pick = solve(id - 1, k - arr[id], arr, dp);
-    int not_pick = solve(id - 1, k, arr, dp);
-    return dp[id][k] = pick + not_pick;
+    int n = arr.size();
+    vi dp(k + 1);
+    // if we have arr[0] = 0 then we can make the two subsets
+    // other wise only 1
+    if (arr[0] == 0)
+        dp[0] = 2;
+    else
+        dp[0] = 1;
+
+    // if here zeroth element is zero then
+    // dp[0][arr[0]] -> dp[0][0] =1
+    // but we have it's value to "2"
+    if (arr[0] != 0 and arr[0] <= k)
+        dp[arr[0]] = 1;
+
+    for (int i = 1; i < n; i++)
+    {
+        vi curr(k + 1);
+        for (int j = 0; j <= k; j++)
+        {
+            int not_take = dp[j];
+            int take = false;
+            if (arr[i] <= j)
+                take = dp[j - arr[i]];
+            curr[j] = take + not_take;
+        }
+        dp = curr;
+    }
+    return dp[k];
 }
 void sol()
 {
-    var2(n, k);
+    var2(n, diff);
     varv(arr, n);
-    vvi dp(n, vi(k + 1, -1));
-    int ans = solve(n - 1, k, arr, dp);
+    int k = accumulate(all(arr), 0) - diff;
+    if (k % 2 != 0)
+    {
+        prn(0);
+        return;
+    }
+    k /= 2;
+    int ans = solve(n - 1, k, arr);
     prn(ans);
 }
 

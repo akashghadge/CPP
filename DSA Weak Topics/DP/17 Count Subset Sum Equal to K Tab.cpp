@@ -149,6 +149,10 @@ void prnv(auto b, auto e)
     }
     cout << endl;
 }
+/*
+this code note handle the 0,0,1
+case
+*/
 int solve(int id, int k, vi &arr)
 {
     int n = arr.size();

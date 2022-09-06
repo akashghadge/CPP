@@ -202,7 +202,7 @@ void sol()
     var2(n, diff);
     varv(arr, n);
     int k = accumulate(all(arr), 0) - diff;
-    if (k % 2 != 0)
+    if (k % 2 != 0 or k < 0)
     {
         prn(0);
         return;

@@ -174,7 +174,7 @@ void sol()
     var(n);
     varv(arr, n);
     int ans = solve(arr, n);
-    prn(ans);
+    prn(ans); 
 }
 
 int main()

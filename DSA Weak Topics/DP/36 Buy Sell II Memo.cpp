@@ -166,25 +166,26 @@ and loop is also changed n-1 -> 0
 pep coding approach is totally different cause
 pep says sell on rises each rise is sellable
 */
-ll solve(int id, int buy, int n, vi &arr, vvi &dp)
+ll solve(vi arr, int id, int buy, int n, vvi &dp)
 {
-    if (id == n)
-        return 0;
-    ll profit = 0;
-    if (buy)
-    {
-        // buying
-        profit = max(profit, solve(id + 1, !buy, n, arr, dp) - arr[id]);
-        // not buying
-        profit = max(profit, solve(id + 1, buy, n, arr, dp));
+    if (id >= n)
+        return 0; // base case
+
+    if (dp[id][buy] != -1)
+        return dp[id][buy];
+
+    int profit;
+
+    if (buy == 0)
+    { // We can buy the stock
+        profit = max(0 + solve(arr, id + 1, 0, n, dp), -arr[id] + solve(arr, id + 1, 1, n, dp));
     }
-    else
-    {
-        // selling
-        profit = max(profit, solve(id + 1, !buy, n, arr, dp) + arr[id]);
-        // not selling
-        profit = max(profit, solve(id + 1, buy, n, arr, dp));
+
+    if (buy == 1)
+    { // We can sell the stock
+        profit = max(0 + solve(arr, id + 1, 1, n, dp), arr[id] + solve(arr, id + 1, 0, n, dp));
     }
+
     return dp[id][buy] = profit;
 }
 void sol()
@@ -192,7 +193,7 @@ void sol()
     var(n);
     varv(arr, n);
     vvi dp(n, vi(2, -1));
-    ll ans = solve(0, 1, n, arr, dp);
+    ll ans = solve(arr, 0, 0, n, dp);
     prn(ans);
 }
 

@@ -154,8 +154,8 @@ bool compare(string &a, string &b)
     int n = a.size(), m = b.size(), f = 0, s = 0;
     if (n != m + 1)
         return false;
-    while (f < n and s < m)
-        if (a[f] == b[s])
+    while (f < n)
+        if (s < m and a[f] == b[s])
             f++, s++;
         else
             f++;

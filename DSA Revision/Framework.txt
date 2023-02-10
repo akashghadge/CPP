@@ -1,0 +1,1 @@
+Notebook -> See Code -> Try to teach -> Again go for important ones "Interview scenario[listen,understand,brute->op,write,type->closure]" -> next pick random sqrt(n) -> Done

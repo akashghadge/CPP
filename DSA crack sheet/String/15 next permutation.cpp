@@ -6,15 +6,15 @@ Example 1:
 Input: N = 6
 arr = {1, 2, 3, 6, 5, 4}
 Output: {1, 2, 4, 3, 5, 6}
-Explaination: The next permutation of the 
+Explaination: The next permutation of the
 given array is {1, 2, 4, 3, 5, 6}.
 Example 2:
 
 Input: N = 3
 arr = {3, 2, 1}
 Output: {1, 2, 3}
-Explaination: As arr[] is the last 
-permutation. So, the next permutation 
+Explaination: As arr[] is the last
+permutation. So, the next permutation
 is the lowest one.
 Your Task:
 You do not need to read input or print anything. Your task is to complete the function nextPermutation() which takes N and arr[ ] as input parameters and returns a list of numbers containing the next permutation.
@@ -26,6 +26,36 @@ Constraints:
 1 ≤ N ≤ 10000
 
 
+*/
+/*
+1,3,2
+dic orders are
+1,2,3
+1,3,2
+2,1,2
+2,3,1
+3,1,2
+3,2,1
+
+brute force -> generate all possible combos
+algo is below
+
+Intuition in striver video->
+as we know here
+when any permutation is going with flow
+it starts like
+increasing flow and then if we go to next one
+it  will lke just one greater element is shifted towards left
+i.e
+1,2,3 -> 1,3,2
+so for next one wee need to to one thing where
+this flow of increasing top decreasing occurs
+use breakpoint and swap with it next just greater element in next part
+i.e 1,4,5,3,2 -> here break point is 4 value
+swap it with next greater one i.e 5 if(here 6 is there then also 5 is used to swap cause 5 is next greater not 6)
+1,5,4,3,2 this greater permutation but not just next one
+for just next one reverse the breakpoint+1 to end part
+cause this is already sorted and no need to sort it just reverse it
 */
 #include <bits/stdc++.h>
 #define en "\n"

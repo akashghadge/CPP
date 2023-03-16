@@ -78,8 +78,7 @@ int searchWord(vector<vector<char>> grid, string word)
                 vector<int> temp;
                 temp.push_back(i);
                 temp.push_back(j);
-                ans.push_back(
-                    temp);
+                ans.push_back(temp);
             }
         }
     }

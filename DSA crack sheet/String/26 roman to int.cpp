@@ -16,10 +16,10 @@ Output: 5
 Example 2:
 
 Input:
-s = III 
+s = III
 Output: 3
 Your Task:
-Complete the function romanToDecimal() which takes an string as input parameter and returns the equivalent decimal number. 
+Complete the function romanToDecimal() which takes an string as input parameter and returns the equivalent decimal number.
 
 Expected Time Complexity: O(|S|), |S| = length of string S.
 Expected Auxiliary Space: O(1)

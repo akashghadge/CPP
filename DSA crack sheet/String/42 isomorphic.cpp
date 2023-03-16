@@ -43,7 +43,7 @@ using namespace std;
 class Solution
 {
 public:
-    //Function to check if two strings are isomorphic.
+    // Function to check if two strings are isomorphic.
     bool areIsomorphic(string str1, string str2)
     {
         // Your code here
@@ -56,7 +56,6 @@ public:
 
         for (int i = 0; i < str1.size(); i++)
         {
-            // char is already mapped
             if (chars[str1[i]] == -1)
             {
                 if (marked[str2[i]] == true)
@@ -66,6 +65,7 @@ public:
                 marked[str2[i]] = true;
                 chars[str1[i]] = str2[i];
             }
+            // char is already mapped
             else if (chars[str1[i]] != str2[i])
             {
                 return false;

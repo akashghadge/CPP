@@ -1,12 +1,32 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
-int merge(int *arr1, int *arr2, int size1, int size2);
-void swap_element(int *a, int *b)
+
+/*
+Explanation:
+Here we can say that
+basic principle:
+we need to have all the smaller elements in first array and all the larger in second
+so we iterate from first element of both arrays
+
+if we found element which is smaller than ith element in first array
+we can say that the last element of first array is now the larger than that element and we can swapped out it to the second array so we do
+swap(b[j++],a[k--]) here we don't increase the ith iterator cause may be ith element is larger than all the possible ones
+*/
+void merge(int a[], int b[], int n, int m)
 {
-    int temp;
-    temp = *a;
-    *a = *b;
-    *b = temp;
+    // code here
+    int i = 0, j = 0, k = n - 1;
+    while (i <= k && j < m)
+    {
+        if (a[i] < b[j])
+            i++;
+        else
+        {
+            swap(b[j++], a[k--]);
+        }
+    }
+    sort(a, a + n);
+    sort(b, b + m);
 }
 void setArray(int *arr, int size)
 {
@@ -46,22 +66,5 @@ int main()
         cout << "Result" << endl;
         printArray(arr1, size1);
         printArray(arr2, size2);
-    }
-}
-
-int merge(int *arr1, int *arr2, int size1, int size2)
-{
-    for (int i = size2 - 1; i >= 0; i--)
-    {
-        int j, last = arr1[size1 - 1];
-        for (j = size1 - 2; j >= 0 && arr1[j] > arr2[i]; j--)
-        {
-            arr1[j + 1] = arr1[j];
-        }
-        if (j != size1 - 2 || last > arr2[i])
-        {
-            arr1[j + 1] = arr2[i];
-            arr2[i] = last;
-        }
     }
 }

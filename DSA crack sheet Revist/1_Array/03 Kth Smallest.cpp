@@ -22,7 +22,7 @@ public:
     {
         // code here
         priority_queue<int> pq;
-        for (int i = 0; i <= r; i++)
+        for (int i = 0; i <= r; i++) 
         {
             if (pq.size() == k and pq.top() > arr[i])
             {

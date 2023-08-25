@@ -22,7 +22,7 @@ int minSwap(int arr[], int n, int k)
     int ans = bad;
     for (int i = 0, j = count; j < n; ++i, ++j)
     {
-        if (arr[i] > k)
+        if (arr[i] > k) 
             --bad;
         if (arr[j] > k)
             ++bad;

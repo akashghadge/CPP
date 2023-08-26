@@ -16,7 +16,7 @@ void sortMat(int data[N][M], int row, int col)
     {
         for (int j = 0; j < size - 1; j++)
         {
-
+ 
             // Condition to check
             // if the Adjacent elements
             if (data[j / col][j % col] > data[(j + 1) / col][(j + 1) % col])

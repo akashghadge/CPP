@@ -36,7 +36,7 @@ void printCommonElements(int mat[M][N])
         }
     }
 }
-
+ 
 // driver program to test above function
 int main()
 {

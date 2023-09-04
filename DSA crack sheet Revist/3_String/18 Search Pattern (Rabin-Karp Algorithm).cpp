@@ -1,6 +1,8 @@
 /*
 Please read this article don't skip just take glance this is most optimal implementation but we did'nt handle the collisions cause it is most unlikely to happen :)
 https://cp-algorithms.com/string/string-hashing.html
+
+@TODO solve related questions
 */
 #include <bits/stdc++.h>
 using namespace std;
